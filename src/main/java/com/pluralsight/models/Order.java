@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<Item> items;
-    private int orderId;
+    private final List<Item> items;
+    private final int orderId;
 
     public Order() {
         this.items = new ArrayList<>();
