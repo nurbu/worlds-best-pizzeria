@@ -80,6 +80,7 @@ public class UserInterface {
     }
 
     private void processAddDrink() {
+
     }
 
     private void processAddGarlicKnot() {
@@ -97,6 +98,37 @@ public class UserInterface {
     private void processCancelOrder() {
     }
 
+        /* --------------------------------------------------------------------------
+       Helper Functions
+
+     * Parse double and int strings
+     * if s is empty throws Exception with Custom message (skipped by user)
+     * Uses try/catch to check if user input valid.
+     * if s is not a number or in a Double format throws Exception
+
+       -------------------------------------------------------------------------- */
+
+    private static Double parseDouble(String s) {
+        if (s.isEmpty()) {
+            throw new IllegalArgumentException(Colors.WARN + "Input can't be empty" + Colors.RESET);
+        }
+        try {
+            return Double.parseDouble(s);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Colors.WARN + "Invalid number: " + s + Colors.RESET);
+        }
+    }
+
+    private static int parseInt(String s) {
+        if (s.isEmpty()) {
+            throw new IllegalArgumentException(Colors.WARN + "Input can't be empty" + Colors.RESET);
+        }
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Colors.WARN + "Invalid number: " + s + Colors.RESET);
+        }
+    }
 
 }
 
