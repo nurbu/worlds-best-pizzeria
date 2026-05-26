@@ -86,12 +86,24 @@ public class UserInterface {
     private void processAddPizza() {
     }
 
+    /**
+     * Handles getting drink size and flavor.
+     */
+
     private void processAddDrink() {
+
+        /**
+         * Main loop repeats asking to add more drinks
+         */
+
         while (true) {
             System.out.println(Colors.HEADER + "Drink Menu!" + Colors.RESET + "\n");
             System.out.println(BOTTOM_DASHES);
             String[] drinks = {"Coca cola", "Starry", "Coke zero", "Fanta", "Dr.Pepper", "Ice-Tea"};
             String choice = "";
+
+            // Allows user to exit or continue with adding drink to order
+
             while (true) {
                 System.out.println("Enter a Cup Size (S|M|L):");
                 System.out.println("Exit (E):");
@@ -107,6 +119,9 @@ public class UserInterface {
             if (choice.equalsIgnoreCase("e")) {
                 break;
             }
+
+            // Loops through drinks list while printing an index
+
             IntStream.range(0, drinks.length).forEach(i -> System.out.println(i + 1 + ". " + drinks[i]));
             int flavorChoice = -1;
             while (true) {
@@ -122,6 +137,9 @@ public class UserInterface {
                     System.out.println(e.getMessage());
                 }
             }
+            
+            // Creates a drink object
+
             Item drink = new Drink(choice, drinks[flavorChoice]);
             currentOrder.addItem(drink);
             System.out.println(Colors.SUCCESS + "Drink added!" + Colors.RESET + "\n");
