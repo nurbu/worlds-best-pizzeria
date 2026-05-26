@@ -42,7 +42,7 @@ public class UserInterface {
 
     private void processNewOrder() {
         int choice = -1;
-        while (choice != 6) {
+        while (choice != 7) {
             System.out.println(Colors.HEADER + "Order Screen!" + Colors.RESET + "\n");
             System.out.println(BOTTOM_DASHES);
 
@@ -50,12 +50,13 @@ public class UserInterface {
             System.out.println("2. Add Drink");
             System.out.println("3. Add Garlic Knot");
             System.out.println("4. Display order");
-            System.out.println("5. Checkout");
-            System.out.println("6. Cancel order");
+            System.out.println("5. Remove Item");
+            System.out.println("6. Checkout");
+            System.out.println("7. Cancel order");
             System.out.print("Your choice: ");
 
             if (!scan.hasNextInt()) {
-                System.out.println(Colors.ERROR + "Please enter 1-6." + Colors.RESET + "\n");
+                System.out.println(Colors.ERROR + "Please enter 1-7." + Colors.RESET + "\n");
                 scan.nextLine();                 // discard bad input
                 continue;
             }
@@ -67,8 +68,9 @@ public class UserInterface {
                 case 2 -> processAddDrink();
                 case 3 -> processAddGarlicKnot();
                 case 4 -> processDisplayOrder();
-                case 5 -> processCheckout();
-                case 6 -> processCancelOrder();
+                case 5 -> processRemoveItem();
+                case 6 -> processCheckout();
+                case 7 -> processCancelOrder();
                 default -> System.out.println(Colors.ERROR + "Invalid choice!" + Colors.RESET + "\n");
             }
         }
@@ -84,6 +86,9 @@ public class UserInterface {
     }
 
     private void processDisplayOrder() {
+    }
+
+    private void processRemoveItem() {
     }
 
     private void processCheckout() {
