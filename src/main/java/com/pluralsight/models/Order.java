@@ -24,11 +24,23 @@ public class Order {
         return items;
     }
 
+    public void clearOrder() {
+        items.clear();
+    }
+
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        for (Item item : items) {
+            totalPrice += item.getPrice();
+        }
+        return totalPrice;
+    }
+
     public int getOrderId() {
         return orderId;
     }
 
-    public int setOrderId() {
+    private int setOrderId() {
         int min = 100000, max = 200000;
         return (int) (Math.random() * (max - min + 1)) + min;
     }
