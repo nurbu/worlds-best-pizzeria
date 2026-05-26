@@ -28,12 +28,14 @@ public class Order {
         items.clear();
     }
 
-    public double getTotalPrice() {
-        double totalPrice = 0;
-        for (Item item : items) {
-            totalPrice += item.getPrice();
+    public void displayOrder() {
+        for (int i = 1; i < items.size(); i++) {
+            System.out.println(i + ". " + items.get(i));
         }
-        return totalPrice;
+    }
+
+    public double getTotalPrice() {
+        return items.stream().mapToDouble(Item::getPrice).sum();
     }
 
     public int getOrderId() {
