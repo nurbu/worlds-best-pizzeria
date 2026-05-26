@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.models.Drink;
+import com.pluralsight.models.GarlicKnot;
 import com.pluralsight.models.Item;
 import com.pluralsight.models.Order;
 
@@ -152,6 +153,21 @@ public class UserInterface {
     }
 
     private void processAddGarlicKnot() {
+        while (true) {
+            System.out.println("Would you like to add garlic knot? (Y/N)");
+            String choice = scan.nextLine();
+            while (true) {
+                if (choice.equalsIgnoreCase("Y") || choice.equalsIgnoreCase("N")) {
+                    break;
+                }
+                System.out.println(Colors.ERROR + "Please enter Y or N" + Colors.RESET + "\n");
+            }
+            if (choice.equalsIgnoreCase("Y")) {
+                currentOrder.addItem(new GarlicKnot());
+            } else {
+                return;
+            }
+        }
     }
 
     private void processDisplayOrder() {
