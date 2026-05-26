@@ -137,10 +137,10 @@ public class UserInterface {
                     System.out.println(e.getMessage());
                 }
             }
-            
+
             // Creates a drink object
 
-            Item drink = new Drink(choice, drinks[flavorChoice]);
+            Item drink = new Drink(drinks[flavorChoice - 1], choice.toUpperCase());
             currentOrder.addItem(drink);
             System.out.println(Colors.SUCCESS + "Drink added!" + Colors.RESET + "\n");
             System.out.print("Would you like to add another drink? (Y/N):");
@@ -155,6 +155,7 @@ public class UserInterface {
     }
 
     private void processDisplayOrder() {
+        currentOrder.displayOrder();
     }
 
     private void processRemoveItem() {

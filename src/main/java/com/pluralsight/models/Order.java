@@ -29,8 +29,9 @@ public class Order {
     }
 
     public void displayOrder() {
-        for (int i = 1; i < items.size(); i++) {
-            System.out.println(i + ". " + items.get(i));
+        for (int i = 0; i < items.size(); i++) {
+
+            System.out.println(i + 1 + ". " + items.get(i));
         }
     }
 
