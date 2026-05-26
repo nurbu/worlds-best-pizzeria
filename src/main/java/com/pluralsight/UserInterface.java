@@ -1,14 +1,21 @@
 package com.pluralsight;
 
+import com.pluralsight.models.Drink;
+import com.pluralsight.models.Item;
+import com.pluralsight.models.Order;
+
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class UserInterface {
 
     private Scanner scan;
     private static final String BOTTOM_DASHES = (Colors.HEADER + "-".repeat(80) + Colors.RESET);
+    Order currentOrder;
 
     public UserInterface() {
         scan = new Scanner(System.in);
+        currentOrder = new Order();
     }
 
 
@@ -80,7 +87,50 @@ public class UserInterface {
     }
 
     private void processAddDrink() {
-
+        while (true) {
+            System.out.println(Colors.HEADER + "Drink Menu!" + Colors.RESET + "\n");
+            System.out.println(BOTTOM_DASHES);
+            String[] drinks = {"Coca cola", "Starry", "Coke zero", "Fanta", "Dr.Pepper", "Ice-Tea"};
+            String choice = "";
+            while (true) {
+                System.out.println("Enter a Cup Size (S|M|L):");
+                System.out.println("Exit (E):");
+                System.out.print("Choice: ");
+                choice = scan.nextLine();
+                if (choice.equalsIgnoreCase("S") || choice.equalsIgnoreCase("M") || choice.equalsIgnoreCase("L")
+                        || choice.equalsIgnoreCase("E")) {
+                    break;
+                } else {
+                    System.out.println(Colors.ERROR + "Please enter a Cup Size (S|M|L) or (E) to exit." + Colors.RESET + "\n");
+                }
+            }
+            if (choice.equalsIgnoreCase("e")) {
+                break;
+            }
+            IntStream.range(0, drinks.length).forEach(i -> System.out.println(i + 1 + ". " + drinks[i]));
+            int flavorChoice = -1;
+            while (true) {
+                System.out.print("Choice: ");
+                try {
+                    flavorChoice = parseInt(scan.nextLine());
+                    if (!(flavorChoice > 0 && flavorChoice < 7)) {
+                        System.out.println(Colors.ERROR + "Enter a number 1-6" + Colors.RESET + "\n");
+                    } else {
+                        break;
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            Item drink = new Drink(choice, drinks[flavorChoice]);
+            currentOrder.addItem(drink);
+            System.out.println(Colors.SUCCESS + "Drink added!" + Colors.RESET + "\n");
+            System.out.print("Would you like to add another drink? (Y/N):");
+            String answer = scan.nextLine();
+            if (answer.equalsIgnoreCase("N")) {
+                break;
+            }
+        }
     }
 
     private void processAddGarlicKnot() {

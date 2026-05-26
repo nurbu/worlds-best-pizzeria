@@ -1,6 +1,6 @@
 package com.pluralsight.models;
 
-public class Drink {
+public class Drink implements Item {
     private String flavor;
     private String size;
     private double price;
@@ -27,6 +27,7 @@ public class Drink {
         }
     }
 
+    @Override
     public double getPrice() {
         return price;
     }
