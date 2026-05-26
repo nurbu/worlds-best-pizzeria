@@ -152,6 +152,10 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Confirms user would like to add a Garlic Knot
+     * Wrapped in while loop to repeat.
+     */
     private void processAddGarlicKnot() {
         while (true) {
             System.out.println("Would you like to add garlic knot? (Y/N)");
@@ -170,6 +174,10 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Calls on order's displayOrder method to print every item
+     * All items toString already overridden (clean prints).
+     */
     private void processDisplayOrder() {
         currentOrder.displayOrder();
     }
