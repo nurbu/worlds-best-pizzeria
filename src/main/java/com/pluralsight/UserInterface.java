@@ -317,8 +317,11 @@ public class UserInterface {
     private void processCheckout() {
     }
 
+    /**
+     * Reinitializes order to completely restart
+     */
     private void processCancelOrder() {
-
+        currentOrder = new Order();
     }
 
         /* --------------------------------------------------------------------------
