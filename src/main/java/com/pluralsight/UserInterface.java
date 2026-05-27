@@ -1,9 +1,6 @@
 package com.pluralsight;
 
-import com.pluralsight.models.Drink;
-import com.pluralsight.models.GarlicKnot;
-import com.pluralsight.models.Item;
-import com.pluralsight.models.Order;
+import com.pluralsight.models.*;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -85,6 +82,107 @@ public class UserInterface {
     }
 
     private void processAddPizza() {
+        System.out.println("Creating Custom Pizza");
+        int sizeNum;
+        while (true) {
+            System.out.println("Size?");
+            System.out.println("1: 8 inch");
+            System.out.println("2: 12 inch");
+            System.out.println("3: 16 inch");
+            try {
+                sizeNum = parseInt(scan.nextLine());
+                if (sizeNum > 0 && sizeNum < 4) break;
+                else System.out.println(Colors.ERROR + "Invalid size!" + Colors.RESET + "\n");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        int size = 0;
+        switch (sizeNum) {
+            case 1 -> size = 8;
+            case 2 -> size = 12;
+            case 3 -> size = 16;
+        }
+        int crustNum = 0;
+        while (true) {
+            System.out.println("Type of Crust? (1-4)");
+            System.out.println("1. thin");
+            System.out.println("2. regular");
+            System.out.println("3. thick");
+            System.out.println("4. cauliflower");
+            System.out.print("Choice: ");
+            try {
+                crustNum = parseInt(scan.nextLine());
+                if (crustNum > 0 && crustNum < 5) break;
+                else System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        String crustType = "";
+        switch (crustNum) {
+            case 1 -> crustType = "thin";
+            case 2 -> crustType = "regular";
+            case 3 -> crustType = "thick";
+            case 4 -> crustType = "cauliflower";
+        }
+        boolean stuffedCrust = false;
+        while (true) {
+            System.out.println("Stuffed Crust? (1-2)");
+            try {
+                int checker = parseInt(scan.nextLine());
+                if (checker == 1 || checker == 2) {
+                    if (checker == 1) stuffedCrust = true;
+                    break;
+                } else System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        Pizza pizza = new Pizza(size, crustType, stuffedCrust);
+        currentOrder.addItem(pizza);
+        int toppingChoice = -1;
+        while (toppingChoice != 6) {
+            System.out.println("Toppings options");
+            System.out.println("1. Meat");
+            System.out.println("2. Cheese");
+            System.out.println("3. Other toppings");
+            System.out.println("4. Select sauces");
+            System.out.println("5. Side");
+            System.out.println("6. Done");
+            try {
+                toppingChoice = parseInt(scan.nextLine());
+                if (toppingChoice > 0 && toppingChoice < 7) break;
+                else System.out.println(Colors.ERROR + "Invalid Input Enter 1-6!" + Colors.RESET + "\n");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            switch (toppingChoice) {
+                case 1 -> processAddMeat();
+                case 2 -> processAddCheese();
+                case 3 -> processAddRegular();
+                case 4 -> processAddSauces();
+                case 5 -> processAddSides();
+                case 6 -> System.out.println("Done");
+                default -> System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
+            }
+        }
+
+    }
+
+    private void processAddMeat() {
+    }
+
+    private void processAddCheese() {
+    }
+
+    private void processAddRegular() {
+    }
+
+    private void processAddSauces() {
+    }
+
+    private void processAddSides() {
     }
 
     /**
