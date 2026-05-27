@@ -1,6 +1,7 @@
 package com.pluralsight.models.toppings;
 
 public class Meat extends PremiumTopping {
+    private String name;
     private boolean isExtra;
     private String pizzaSize;
 
@@ -12,7 +13,7 @@ public class Meat extends PremiumTopping {
     @Override
     public double getPrice() {
         double totalPrice = 0;
-        switch (pizzaSize.toUpperCase()) {
+        switch (pizzaSize.trim().toUpperCase()) {
             case "S" -> {
                 if (isExtra) totalPrice = 0.50;
                 else totalPrice = 1.00;
@@ -30,13 +31,5 @@ public class Meat extends PremiumTopping {
 
         }
         return totalPrice;
-    }
-
-    @Override
-    public String toString() {
-        if (isExtra) {
-            return getName() + " (Extra) " + getPrice();
-        }
-        return getName() + " " + getPrice();
     }
 }
