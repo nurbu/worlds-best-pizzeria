@@ -4,7 +4,6 @@ import com.pluralsight.models.toppings.Topping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Pizza implements Item {
     private int size;
@@ -27,8 +26,12 @@ public class Pizza implements Item {
         this.toppings.remove(index);
     }
 
-    public void getAllToppings() {
-        IntStream.range(0, this.toppings.size()).forEach(i -> System.out.println(i + 1 + ". " + toppings.get(i)));
+    public List<Topping> getAllToppings() {
+        return this.toppings;
+    }
+
+    public int getSize() {
+        return this.size;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class Pizza implements Item {
 
             case 12 -> totalPrice = 12 + toppings.stream().mapToDouble(Topping::getPrice).sum();
 
-            case 16 -> totalPrice = +toppings.stream().mapToDouble(Topping::getPrice).sum();
+            case 16 -> totalPrice = 16.5 + toppings.stream().mapToDouble(Topping::getPrice).sum();
 
         }
         return totalPrice;
@@ -50,11 +53,12 @@ public class Pizza implements Item {
         StringBuilder sb = new StringBuilder();
         sb.append(size + " Pizza\n");
         sb.append("Crust " + crustType + "\n");
-        sb.append("StuffedCrust \n");
-        if (toppings.size() > 0) {
-            sb.append("Toppings\n");
-            toppings.stream().forEach(topping -> sb.append(topping + "\n"));
+        if (stuffedCrust) {
+            sb.append("StuffedCrust \n");
         }
+        sb.append("Toppings\n");
+        toppings.stream().forEach(topping -> sb.append(topping + "\n"));
+
         return sb.toString();
     }
 

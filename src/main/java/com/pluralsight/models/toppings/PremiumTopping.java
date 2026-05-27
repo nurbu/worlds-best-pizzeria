@@ -6,11 +6,11 @@ package com.pluralsight.models.toppings;
  * toString gets reused in all children classes.
  */
 public abstract class PremiumTopping extends Topping {
-    private String name;
-    private boolean isExtra;
-    private String pizzaSize;
+    protected String name;
+    protected boolean isExtra;
+    protected int pizzaSize;
 
-    public PremiumTopping(String name, boolean isExtra, String pizzaSize) {
+    public PremiumTopping(String name, boolean isExtra, int pizzaSize) {
         super(name);
         this.isExtra = isExtra;
         this.pizzaSize = pizzaSize;
@@ -21,6 +21,7 @@ public abstract class PremiumTopping extends Topping {
      *
      * @return isExtra checked.
      */
+    @Override
     public String toString() {
         if (isExtra) {
             return getName() + " (Extra) " + getPrice();

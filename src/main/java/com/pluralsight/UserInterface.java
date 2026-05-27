@@ -1,6 +1,8 @@
 package com.pluralsight;
 
 import com.pluralsight.models.*;
+import com.pluralsight.models.toppings.Meat;
+import com.pluralsight.models.toppings.PremiumTopping;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -140,7 +142,7 @@ public class UserInterface {
             }
         }
         Pizza pizza = new Pizza(size, crustType, stuffedCrust);
-        currentOrder.addItem(pizza);
+
         int toppingChoice = -1;
         while (toppingChoice != 6) {
             System.out.println("Toppings options");
@@ -150,39 +152,68 @@ public class UserInterface {
             System.out.println("4. Select sauces");
             System.out.println("5. Side");
             System.out.println("6. Done");
-            try {
-                toppingChoice = parseInt(scan.nextLine());
-                if (toppingChoice > 0 && toppingChoice < 7) break;
-                else System.out.println(Colors.ERROR + "Invalid Input Enter 1-6!" + Colors.RESET + "\n");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            while (true) {
+                try {
+                    toppingChoice = parseInt(scan.nextLine());
+                    if (toppingChoice > 0 && toppingChoice < 7) break;
+                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-6!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
             }
             switch (toppingChoice) {
-                case 1 -> processAddMeat();
-                case 2 -> processAddCheese();
-                case 3 -> processAddRegular();
-                case 4 -> processAddSauces();
-                case 5 -> processAddSides();
-                case 6 -> System.out.println("Done");
+                case 1 -> processAddMeat(pizza);
+                case 2 -> processAddCheese(pizza);
+                case 3 -> processAddRegular(pizza);
+                case 4 -> processAddSauces(pizza);
+                case 5 -> processAddSides(pizza);
+                case 6 -> {
+                }
                 default -> System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
             }
         }
+        currentOrder.addItem(pizza);
 
     }
 
-    private void processAddMeat() {
+    private void processAddMeat(Pizza pizza) {
+        String[] meats = {"Pepperoni", "Sausage", "Ham", "Bacon", "Chicken", "Meatball"};
+        System.out.println("Meat Toppings");
+        int choice = -1;
+        while (choice != 7) {
+            IntStream.range(0, meats.length).forEach(i -> System.out.println(i + 1 + ". " + meats[i]));
+            System.out.println("7. Done");
+            while (true) {
+                try {
+                    choice = parseInt(scan.nextLine());
+                    if (choice > 0 && choice < 8) break;
+                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-7!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (choice == 7) {
+                break;
+            }
+            String meatType = meats[choice - 1];
+            boolean isExtra = pizza.getAllToppings().stream().anyMatch(topping -> topping.getName().equals(meatType));
+            PremiumTopping topping = new Meat(meatType, isExtra, pizza.getSize());
+            pizza.addTopping(topping);
+
+        }
     }
 
-    private void processAddCheese() {
+
+    private void processAddCheese(Pizza pizza) {
     }
 
-    private void processAddRegular() {
+    private void processAddRegular(Pizza pizza) {
     }
 
-    private void processAddSauces() {
+    private void processAddSauces(Pizza pizza) {
     }
 
-    private void processAddSides() {
+    private void processAddSides(Pizza pizza) {
     }
 
     /**
