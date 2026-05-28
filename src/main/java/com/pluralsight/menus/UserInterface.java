@@ -90,7 +90,7 @@ public class UserInterface {
     }
 
     private void processAddPizza() {
-        System.out.println("Adding Pizza");
+        System.out.println(PremadeFormats.PIZZA_HOME);
         int choice;
         while (true) {
             System.out.println("1. Signature Pizzas");
@@ -551,6 +551,22 @@ public class UserInterface {
      * if s is not a number or in a int format throws Exception
 
        -------------------------------------------------------------------------- */
+
+    private int getMenuChoice(String[] options) {
+        IntStream.range(0, options.length).forEach(i -> System.out.println(i + 1 + ". " + options[i]));
+        System.out.println(options.length + 1 + ". Exit");
+        System.out.print("Choice:");
+        while (true) {
+            try {
+                int choice = parseInt(scan.nextLine());
+                if (choice > 0 && choice < options.length + 1) return choice;
+                System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private static int parseInt(String s) {
         if (s.isEmpty()) {
             throw new IllegalArgumentException(Colors.WARN + "Input can't be empty" + Colors.RESET);
@@ -558,7 +574,7 @@ public class UserInterface {
         try {
             return Integer.parseInt(s);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Colors.WARN + "Invalid number: " + s + Colors.RESET);
+            throw new IllegalArgumentException(Colors.WARN + "Invalid not a number: " + s + Colors.RESET);
         }
     }
 
