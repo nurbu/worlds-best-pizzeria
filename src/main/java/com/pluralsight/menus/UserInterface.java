@@ -253,42 +253,31 @@ public class UserInterface {
 
     private void processAddMeat(Pizza pizza) {
         String[] meats = {"Pepperoni", "Sausage", "Ham", "Bacon", "Chicken", "Meatball"};
-        System.out.println("\nMeat Toppings\n");
         int choice;
         while (true) {
+            System.out.println("\nMeat Toppings\n");
             choice = getMenuChoice(meats) - 1;
             if (choice == meats.length) break;
             String meatType = meats[choice];
             boolean isExtra = pizza.getAllToppings().stream().anyMatch(topping -> topping.getName().equals(meatType));
             pizza.addTopping(new Meat(meatType, isExtra, pizza.getSize()));
+            System.out.println("Add More!\n");
         }
     }
 
 
     private void processAddCheese(Pizza pizza) {
         String[] cheeses = {"Mozzarella", "Parmesan", "Ricotta", "Goat Cheese", "Buffalo"};
-        System.out.println("\nCheese Toppings\n");
-        int choice = -1;
-        while (choice != 6) {
-            IntStream.range(0, cheeses.length).forEach(i -> System.out.println(i + 1 + ". " + cheeses[i]));
-            System.out.println("6. Exit");
-            System.out.print("Choice: ");
-            while (true) {
-                try {
-                    choice = parseInt(scan.nextLine());
-                    if (choice > 0 && choice < 7) break;
-                    else System.out.println(Colors.ERROR + "\nInvalid Input Enter 1-7!" + Colors.RESET + "\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            if (choice == 6) {
-                break;
-            }
-            String cheeseType = cheeses[choice - 1];
+
+        int choice;
+        while (true) {
+            System.out.println("\nCheese Toppings\n");
+            choice = getMenuChoice(cheeses) - 1;
+            if (choice == cheeses.length) break;
+            String cheeseType = cheeses[choice];
             boolean isExtra = pizza.getAllToppings().stream().anyMatch(topping -> topping.getName().equals(cheeseType));
-            PremiumTopping topping = new Cheese(cheeseType, isExtra, pizza.getSize());
-            pizza.addTopping(topping);
+            pizza.addTopping(new Cheese(cheeseType, isExtra, pizza.getSize()));
+            System.out.println("Add More!\n");
         }
     }
 
