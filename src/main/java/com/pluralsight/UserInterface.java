@@ -175,6 +175,19 @@ public class UserInterface {
 
     }
 
+       /* --------------------------------------------------------------------------
+       Topping's Helper Functions
+
+     * Displays available toppings (numbered).
+     * Uses parseInt helper within try/catch wrapped in a while
+     * to help get valid input.
+     * Premium Toppings only, checks if topping name already in
+     pizza's topping list to make isExtra true for correct pricing and toString.
+      * Auto loops until user.
+      *
+      @param pizza has a toppings list to append to.
+       -------------------------------------------------------------------------- */
+
     private void processAddMeat(Pizza pizza) {
         String[] meats = {"Pepperoni", "Sausage", "Ham", "Bacon", "Chicken", "Meatball"};
         System.out.println("Meat Toppings");
@@ -399,6 +412,31 @@ public class UserInterface {
     }
 
     private void processRemoveItem() {
+        System.out.println("Removing an item from the order");
+        System.out.println("Enter number associated with item (1,2,3,...)");
+        currentOrder.displayOrder();
+        int choice = -1;
+        int orderSize = currentOrder.getItems().size() + 1;
+        while (choice != orderSize) {
+            System.out.println(orderSize + ". Done");
+            while (true) {
+                try {
+                    choice = parseInt(scan.nextLine());
+                    if (choice > 0 && choice < orderSize + 1) break;
+                    else
+                        System.out.println(Colors.ERROR + "Invalid Input Enter 1-" + orderSize + "!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (choice == orderSize) {
+                break;
+            }
+            System.out.println(Colors.SUCCESS + "Item removed!" + Colors.RESET + "\n");
+            System.out.println(currentOrder.getItem(choice));
+            currentOrder.removeItem(choice);
+
+        }
     }
 
     private void processCheckout() {
@@ -411,7 +449,7 @@ public class UserInterface {
         currentOrder = new Order();
     }
 
-        /* --------------------------------------------------------------------------
+    /* --------------------------------------------------------------------------
        Helper Functions
 
      * Parse double and int strings

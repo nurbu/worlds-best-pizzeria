@@ -2,6 +2,7 @@ package com.pluralsight.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Order {
     private final List<Item> items;
@@ -20,6 +21,10 @@ public class Order {
         items.remove(index - 1);
     }
 
+    public Item getItem(int index) {
+        return items.get(index - 1);
+    }
+
     public List<Item> getItems() {
         return items;
     }
@@ -29,10 +34,11 @@ public class Order {
     }
 
     public void displayOrder() {
-        for (int i = 0; i < items.size(); i++) {
-
-            System.out.println(i + 1 + ". " + items.get(i));
+        if (items.isEmpty()) {
+            System.out.println("order is empty");
+            return;
         }
+        IntStream.range(0, items.size()).forEach(i -> System.out.println(i + 1 + ". " + items.get(i)));
     }
 
     public double getTotalPrice() {
