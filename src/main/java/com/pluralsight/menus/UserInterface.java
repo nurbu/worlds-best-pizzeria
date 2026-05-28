@@ -1,8 +1,9 @@
-package com.pluralsight;
+package com.pluralsight.menus;
 
 import com.pluralsight.managers.ReceiptManager;
 import com.pluralsight.models.*;
 import com.pluralsight.models.toppings.*;
+import com.pluralsight.utilities.Colors;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;

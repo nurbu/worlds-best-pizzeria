@@ -11,12 +11,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ReceiptManager {
+    // Preformatted patterns
     private static final String DATE_PATTERN = "yyyyMMdd";
     private static final String TIME_PATTERN = "hhmmss";
     private static final String DATETIME_PATTERN = DATE_PATTERN + "-" + TIME_PATTERN;
 
     private static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(DATETIME_PATTERN);
 
+    /**
+     * Checks if Receipts folder exists (creates if needed).
+     * Gets lastest date and time (formats using DATETIME_FMT) stores as fileName.
+     * Creates new file use folder (Receipts) as parent.
+     * Loop through items and uses their preformatted toString
+     * to write each line all wrapped in a try/catch.
+     *
+     * @param items All of currentOrders items
+     */
     public static void createReceipt(List<Item> items) {
         File folder = new File("Receipts");
         if (!folder.exists()) {
