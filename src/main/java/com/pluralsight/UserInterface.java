@@ -385,21 +385,37 @@ public class UserInterface {
      * Wrapped in while loop to repeat.
      */
     private void processAddGarlicKnot() {
-        while (true) {
-            System.out.println("Would you like to add garlic knot? (Y/N)");
-            String choice = scan.nextLine();
+        String[] garlicKnots = {"Classic", "Parmesan", "Cheesy", "Pizza-style", "Spicy", "Everything Bagel"};
+        System.out.println("Garlic Knots");
+
+
+        int choice = -1;
+        while (choice != 7) {
+            System.out.println("Pick a flavor (1-6)");
+            IntStream.range(0, garlicKnots.length).forEach(i -> System.out.println(i + 1 + ". " + garlicKnots[i]));
+            System.out.println("7. Exit");
             while (true) {
-                if (choice.equalsIgnoreCase("Y") || choice.equalsIgnoreCase("N")) {
-                    break;
+                try {
+                    choice = parseInt(scan.nextLine());
+                    if (choice > 0 && choice < 8) break;
+                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-7!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
-                System.out.println(Colors.ERROR + "Please enter Y or N" + Colors.RESET + "\n");
             }
-            if (choice.equalsIgnoreCase("Y")) {
-                currentOrder.addItem(new GarlicKnot());
-            } else {
-                return;
+            if (choice == 7) {
+                break;
             }
+            String flavor = garlicKnots[choice - 1];
+            GarlicKnot garlicKnot = new GarlicKnot(flavor);
+
+            currentOrder.addItem(garlicKnot);
+            System.out.println(currentOrder.getItem(currentOrder.getItems().size()));
+            System.out.println(Colors.SUCCESS + "Garlic Knot added!" + Colors.RESET + "\n");
+
         }
+
+
     }
 
     /**
@@ -413,10 +429,10 @@ public class UserInterface {
     private void processRemoveItem() {
         System.out.println("Removing an item from the order");
         System.out.println("Enter number associated with item (1,2,3,...)");
-        currentOrder.displayOrder();
         int choice = -1;
         int orderSize = currentOrder.getItems().size() + 1;
         while (choice != orderSize) {
+            currentOrder.displayOrder();
             System.out.println(orderSize + ". Done");
             while (true) {
                 try {
@@ -434,7 +450,7 @@ public class UserInterface {
             System.out.println(Colors.SUCCESS + "Item removed!" + Colors.RESET + "\n");
             System.out.println(currentOrder.getItem(choice));
             currentOrder.removeItem(choice);
-
+            orderSize -= 1;
         }
     }
 

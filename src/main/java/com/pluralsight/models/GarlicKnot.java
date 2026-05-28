@@ -2,6 +2,11 @@ package com.pluralsight.models;
 
 public class GarlicKnot implements Item {
 
+    private String flavor;
+
+    public GarlicKnot(String flavor) {
+        this.flavor = flavor;
+    }
 
     @Override
     public double getPrice() {
@@ -10,6 +15,6 @@ public class GarlicKnot implements Item {
 
     @Override
     public String toString() {
-        return "Garlic Knot $" + 1.50;
+        return "Garlic Knot " + flavor + " $" + 1.50;
     }
 }
