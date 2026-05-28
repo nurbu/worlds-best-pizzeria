@@ -1,8 +1,9 @@
 package com.pluralsight.models;
 
-import com.pluralsight.models.toppings.Topping;
+import com.pluralsight.models.toppings.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Pizza implements Item {
@@ -50,15 +51,69 @@ public class Pizza implements Item {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(size + " Pizza\n");
-        sb.append("Crust " + crustType + "\n");
-        if (stuffedCrust) {
-            sb.append("StuffedCrust \n");
+        List<RegularTopping> regularToppings = new ArrayList<>();
+        List<Meat> meats = new ArrayList<>();
+        List<Cheese> cheeses = new ArrayList<>();
+        List<Sauce> sauce = new ArrayList<>();
+        List<Side> sides = new ArrayList<>();
+        for (Topping topping : toppings) {
+            if (topping instanceof RegularTopping) regularToppings.add((RegularTopping) topping);
+            else if (topping instanceof Meat) meats.add((Meat) topping);
+            else if (topping instanceof Cheese) cheeses.add((Cheese) topping);
+            else if (topping instanceof Sauce) sauce.add((Sauce) topping);
+            else if (topping instanceof Side) sides.add((Side) topping);
         }
-        sb.append("Toppings\n");
-        toppings.stream().forEach(topping -> sb.append(topping + "\n"));
+        regularToppings.sort(Comparator.comparing(RegularTopping::getName));
+        meats.sort(Comparator.comparing(Meat::getName));
+        cheeses.sort(Comparator.comparing(Cheese::getName));
+        sauce.sort(Comparator.comparing(Sauce::getName));
+        sides.sort(Comparator.comparing(Side::getName));
 
+        StringBuilder sb = new StringBuilder();
+        sb.append(size + "\" Pizza ");
+        if (stuffedCrust) {
+            sb.append("(StuffedCrust) \n");
+        }
+        double basePrice = 0;
+        if (size == 8) basePrice = 8.50;
+        else if (size == 12) basePrice = 12.00;
+        else basePrice = 16.50;
+        sb.append("Base Price: " + basePrice + "\n");
+        sb.append("Crust: " + crustType + "\n");
+        if (toppings.size() > 0) {
+            sb.append("Toppings\n");
+            if (regularToppings.size() > 0) {
+                sb.append("Regular Toppings: ");
+                for (int i = 0; i < regularToppings.size(); i++) {
+                    sb.append(regularToppings.get(i) + (i == regularToppings.size() - 1 ? "\n" : ", "));
+                }
+            }
+            if (meats.size() > 0) {
+                sb.append("Meat Toppings: ");
+                for (int i = 0; i < meats.size(); i++) {
+                    sb.append(meats.get(i) + (i == meats.size() - 1 ? "\n" : ", "));
+                }
+            }
+            if (cheeses.size() > 0) {
+                sb.append("Cheese Toppings: ");
+                for (int i = 0; i < cheeses.size(); i++) {
+                    sb.append(cheeses.get(i) + (i == cheeses.size() - 1 ? "\n" : ", "));
+                }
+            }
+            if (sauce.size() > 0) {
+                sb.append("Sauce: ");
+                for (int i = 0; i < sauce.size(); i++) {
+                    sb.append(sauce.get(i) + (i == sauce.size() - 1 ? "\n" : ", "));
+                }
+            }
+            if (sides.size() > 0) {
+                sb.append("Side Toppings: ");
+                for (int i = 0; i < sides.size(); i++) {
+                    sb.append(sides.get(i) + (i == sides.size() - 1 ? "\n" : ", "));
+                }
+            }
+        }
+        sb.append("Total Price: " + getPrice() + "\n");
         return sb.toString();
     }
 

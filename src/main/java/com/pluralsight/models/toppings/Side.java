@@ -1,8 +1,8 @@
 package com.pluralsight.models.toppings;
 
-public class Sides extends Topping {
+public class Side extends Topping {
 
-    public Sides(String name) {
+    public Side(String name) {
         super(name);
     }
 

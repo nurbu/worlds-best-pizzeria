@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import com.pluralsight.managers.ReceiptManager;
 import com.pluralsight.models.*;
 import com.pluralsight.models.toppings.*;
 
@@ -311,7 +312,7 @@ public class UserInterface {
                 break;
             }
             String side = sides[choice - 1];
-            Topping topping = new Sides(side);
+            Topping topping = new Side(side);
             pizza.addTopping(topping);
         }
     }
@@ -455,6 +456,9 @@ public class UserInterface {
     }
 
     private void processCheckout() {
+        System.out.println("Checking out");
+        System.out.println(currentOrder.getItems());
+        ReceiptManager.createReceipt(currentOrder.getItems());
     }
 
     /**
