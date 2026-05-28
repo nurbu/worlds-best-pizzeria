@@ -26,7 +26,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 2) {
             System.out.println(Colors.HEADER + "Welcome to the World's Best Pizzeria!!!" + Colors.RESET + "\n");
-            System.out.println(PremadeFormats.BOTTOM_DASHES);
+            System.out.println(PremadeFormats.SINGLE_DASHES);
 
             System.out.println("1. Create a new order");
             System.out.println("2. Exit");
@@ -52,7 +52,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 7) {
             System.out.println(Colors.HEADER + "Order Screen!" + Colors.RESET + "\n");
-            System.out.println(PremadeFormats.BOTTOM_DASHES);
+            System.out.println(PremadeFormats.SINGLE_DASHES);
 
             System.out.println("1. Add Pizza");
             System.out.println("2. Add Drink");
@@ -331,7 +331,7 @@ public class UserInterface {
          * Main loop repeats asking to add more drinks
          */
         System.out.println(Colors.HEADER + "Drink Menu!" + Colors.RESET + "\n");
-        System.out.println(PremadeFormats.BOTTOM_DASHES);
+        System.out.println(PremadeFormats.SINGLE_DASHES);
 
         // Allows user to exit or continue with adding drink to order
 

@@ -8,13 +8,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ReceiptManager {
 
-
-    private static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(PremadeFormats.DATETIME_PATTERN);
 
     /**
      * Checks if Receipts folder exists (creates if needed).
@@ -31,9 +28,16 @@ public class ReceiptManager {
             folder.mkdir();
         }
         LocalDateTime now = LocalDateTime.now();
-        String fileName = now.format(DATETIME_FMT);
+        String date = now.format(PremadeFormats.DATE_FMT);
+        String time = now.format(PremadeFormats.TIME_FMT);
+        String fileName = now.format(PremadeFormats.DATETIME_FMT);
         File file = new File(folder, fileName);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(PremadeFormats.STORE_HEADER);
+            bw.newLine();
+            bw.newLine();
+            bw.write("Date: " + date + " " + time);
+            bw.newLine();
             for (Item item : items) {
                 bw.write(item.toString());
                 bw.newLine();
