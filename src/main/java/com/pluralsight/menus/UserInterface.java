@@ -6,8 +6,13 @@ import com.pluralsight.models.toppings.*;
 import com.pluralsight.utilities.Colors;
 import com.pluralsight.utilities.PremadeFormats;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
+
+import static com.pluralsight.models.SignaturePizza.loadSignaturePizzas;
 
 public class UserInterface {
 
@@ -103,6 +108,31 @@ public class UserInterface {
 
         if (choice == 3) return;
         else if (choice == 1) {
+            Map<String, Pizza> pizzas = loadSignaturePizzas();
+            List<Pizza> pizzasIndexedValues = new ArrayList<>(pizzas.values());
+            int signatureChoice = -1;
+            int i;
+            while (true) {
+                i = 1;
+                System.out.println("Signature Pizzas");
+                for (Map.Entry<String, Pizza> entry : pizzas.entrySet()) {
+                    System.out.println("\n" + i + ". " + entry.getKey());
+                    System.out.println(entry.getValue());
+                    i += 1;
+                }
+                System.out.println(i + ". Exit");
+                System.out.print("Choice: ");
+                try {
+                    signatureChoice = parseInt(scan.nextLine());
+                    if (signatureChoice > 0 && signatureChoice < i + 1) break;
+                    else System.out.println(Colors.ERROR + "\nInvalid size!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (signatureChoice == pizzas.size() + 1) return;
+            Pizza pizza = pizzasIndexedValues.get(signatureChoice - 1);
+            System.out.println("Would you like to customize this pizza? (1-2)");
 
         } else if (choice == 2) {
             System.out.println("\n" + PremadeFormats.DOUBLE_DASHES_COLORFUL);
