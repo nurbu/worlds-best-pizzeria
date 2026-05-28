@@ -1,6 +1,7 @@
 package com.pluralsight.managers;
 
 import com.pluralsight.models.Item;
+import com.pluralsight.utilities.PremadeFormats;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,12 +12,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ReceiptManager {
-    // Preformatted patterns
-    private static final String DATE_PATTERN = "yyyyMMdd";
-    private static final String TIME_PATTERN = "hhmmss";
-    private static final String DATETIME_PATTERN = DATE_PATTERN + "-" + TIME_PATTERN;
 
-    private static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(DATETIME_PATTERN);
+
+    private static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(PremadeFormats.DATETIME_PATTERN);
 
     /**
      * Checks if Receipts folder exists (creates if needed).

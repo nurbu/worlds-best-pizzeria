@@ -15,6 +15,6 @@ public class GarlicKnot implements Item {
 
     @Override
     public String toString() {
-        return "Garlic Knot " + flavor + " $" + 1.50;
+        return "Garlic Knot " + flavor + " $" + 1.50 + "\n";
     }
 }

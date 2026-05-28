@@ -4,6 +4,7 @@ import com.pluralsight.managers.ReceiptManager;
 import com.pluralsight.models.*;
 import com.pluralsight.models.toppings.*;
 import com.pluralsight.utilities.Colors;
+import com.pluralsight.utilities.PremadeFormats;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -11,7 +12,6 @@ import java.util.stream.IntStream;
 public class UserInterface {
 
     private Scanner scan;
-    private static final String BOTTOM_DASHES = (Colors.HEADER + "-".repeat(80) + Colors.RESET);
     Order currentOrder;
 
     public UserInterface() {
@@ -26,7 +26,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 2) {
             System.out.println(Colors.HEADER + "Welcome to the World's Best Pizzeria!!!" + Colors.RESET + "\n");
-            System.out.println(BOTTOM_DASHES);
+            System.out.println(PremadeFormats.BOTTOM_DASHES);
 
             System.out.println("1. Create a new order");
             System.out.println("2. Exit");
@@ -52,7 +52,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 7) {
             System.out.println(Colors.HEADER + "Order Screen!" + Colors.RESET + "\n");
-            System.out.println(BOTTOM_DASHES);
+            System.out.println(PremadeFormats.BOTTOM_DASHES);
 
             System.out.println("1. Add Pizza");
             System.out.println("2. Add Drink");
@@ -331,7 +331,7 @@ public class UserInterface {
          * Main loop repeats asking to add more drinks
          */
         System.out.println(Colors.HEADER + "Drink Menu!" + Colors.RESET + "\n");
-        System.out.println(BOTTOM_DASHES);
+        System.out.println(PremadeFormats.BOTTOM_DASHES);
 
         // Allows user to exit or continue with adding drink to order
 
@@ -457,8 +457,8 @@ public class UserInterface {
     }
 
     private void processCheckout() {
-        System.out.println("Checking out");
-        System.out.println(currentOrder.getItems());
+        System.out.println("Checking out\n");
+        currentOrder.displayOrder();
         ReceiptManager.createReceipt(currentOrder.getItems());
     }
 
