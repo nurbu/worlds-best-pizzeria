@@ -30,7 +30,7 @@ public class UserInterface {
 
             System.out.println("1. Create a new order");
             System.out.println("2. Exit");
-            System.out.print("Your choice: ");
+            System.out.print("Choice: ");
 
             if (!scan.hasNextInt()) {
                 System.out.println(Colors.ERROR + "Please enter 1 or 2." + Colors.RESET + "\n");
@@ -61,7 +61,7 @@ public class UserInterface {
             System.out.println("5. Remove Item");
             System.out.println("6. Checkout");
             System.out.println("7. Cancel order");
-            System.out.print("Your choice: ");
+            System.out.print("Choice: ");
 
             if (!scan.hasNextInt()) {
                 System.out.println(Colors.ERROR + "Please enter 1-7." + Colors.RESET + "\n");
@@ -89,9 +89,11 @@ public class UserInterface {
         int sizeNum;
         while (true) {
             System.out.println("Size?");
-            System.out.println("1: 8 inch");
-            System.out.println("2: 12 inch");
-            System.out.println("3: 16 inch");
+            System.out.println("1. 8 inch");
+            System.out.println("2. 12 inch");
+            System.out.println("3. 16 inch");
+            System.out.println("4. Exit");
+            System.out.print("Choice: ");
             try {
                 sizeNum = parseInt(scan.nextLine());
                 if (sizeNum > 0 && sizeNum < 4) break;
@@ -100,6 +102,8 @@ public class UserInterface {
                 System.out.println(e.getMessage());
             }
         }
+
+        if (sizeNum == 4) return;
         int size = 0;
         switch (sizeNum) {
             case 1 -> size = 8;
@@ -132,6 +136,8 @@ public class UserInterface {
         boolean stuffedCrust = false;
         while (true) {
             System.out.println("Stuffed Crust? (1-2)");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
             try {
                 int checker = parseInt(scan.nextLine());
                 if (checker == 1 || checker == 2) {
@@ -153,6 +159,7 @@ public class UserInterface {
             System.out.println("4. Select sauces");
             System.out.println("5. Side");
             System.out.println("6. Exit");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     toppingChoice = parseInt(scan.nextLine());
@@ -197,6 +204,7 @@ public class UserInterface {
         while (choice != 7) {
             IntStream.range(0, meats.length).forEach(i -> System.out.println(i + 1 + ". " + meats[i]));
             System.out.println("7. Exit");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -224,6 +232,7 @@ public class UserInterface {
         while (choice != 6) {
             IntStream.range(0, cheeses.length).forEach(i -> System.out.println(i + 1 + ". " + cheeses[i]));
             System.out.println("6. Exit");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -250,6 +259,7 @@ public class UserInterface {
         while (choice != 10) {
             IntStream.range(0, regularToppings.length).forEach(i -> System.out.println(i + 1 + ". " + regularToppings[i]));
             System.out.println("10. Exit");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -275,6 +285,7 @@ public class UserInterface {
         while (choice != 7) {
             IntStream.range(0, sauces.length).forEach(i -> System.out.println(i + 1 + ". " + sauces[i]));
             System.out.println("7. Exit");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -300,6 +311,7 @@ public class UserInterface {
         while (choice != 3) {
             IntStream.range(0, sides.length).forEach(i -> System.out.println(i + 1 + ". " + sides[i]));
             System.out.println("3. Exit");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -396,6 +408,7 @@ public class UserInterface {
             System.out.println("Pick a flavor (1-6)");
             IntStream.range(0, garlicKnots.length).forEach(i -> System.out.println(i + 1 + ". " + garlicKnots[i]));
             System.out.println("7. Exit");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -436,6 +449,7 @@ public class UserInterface {
         while (choice != orderSize) {
             currentOrder.displayOrder();
             System.out.println(orderSize + ". Done");
+            System.out.print("Choice: ");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -456,6 +470,10 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Displays Order
+     * Send all items in order to be written onto the receipt.
+     */
     private void processCheckout() {
         System.out.println("Checking out\n");
         currentOrder.displayOrder();
