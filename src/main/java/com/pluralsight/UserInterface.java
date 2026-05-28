@@ -150,7 +150,7 @@ public class UserInterface {
             System.out.println("3. Other toppings");
             System.out.println("4. Select sauces");
             System.out.println("5. Side");
-            System.out.println("6. Done");
+            System.out.println("6. Exit");
             while (true) {
                 try {
                     toppingChoice = parseInt(scan.nextLine());
@@ -194,7 +194,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 7) {
             IntStream.range(0, meats.length).forEach(i -> System.out.println(i + 1 + ". " + meats[i]));
-            System.out.println("7. Done");
+            System.out.println("7. Exit");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -221,7 +221,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 6) {
             IntStream.range(0, cheeses.length).forEach(i -> System.out.println(i + 1 + ". " + cheeses[i]));
-            System.out.println("6. Done");
+            System.out.println("6. Exit");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -247,7 +247,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 10) {
             IntStream.range(0, regularToppings.length).forEach(i -> System.out.println(i + 1 + ". " + regularToppings[i]));
-            System.out.println("10. Done");
+            System.out.println("10. Exit");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -272,7 +272,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 7) {
             IntStream.range(0, sauces.length).forEach(i -> System.out.println(i + 1 + ". " + sauces[i]));
-            System.out.println("7. Done");
+            System.out.println("7. Exit");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -297,7 +297,7 @@ public class UserInterface {
         int choice = -1;
         while (choice != 3) {
             IntStream.range(0, sides.length).forEach(i -> System.out.println(i + 1 + ". " + sides[i]));
-            System.out.println("3. Done");
+            System.out.println("3. Exit");
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -322,31 +322,32 @@ public class UserInterface {
 
     private void processAddDrink() {
 
+        String[] drinks = {"Coca cola", "Starry", "Coke zero", "Fanta", "Dr.Pepper", "Ice-Tea"};
+        String[] cupSize = {"Small", "Medium", "Large"};
+        int cupChoice;
         /**
          * Main loop repeats asking to add more drinks
          */
+        System.out.println(Colors.HEADER + "Drink Menu!" + Colors.RESET + "\n");
+        System.out.println(BOTTOM_DASHES);
+
+        // Allows user to exit or continue with adding drink to order
 
         while (true) {
-            System.out.println(Colors.HEADER + "Drink Menu!" + Colors.RESET + "\n");
-            System.out.println(BOTTOM_DASHES);
-            String[] drinks = {"Coca cola", "Starry", "Coke zero", "Fanta", "Dr.Pepper", "Ice-Tea"};
-            String choice = "";
-
-            // Allows user to exit or continue with adding drink to order
-
+            System.out.println("Enter a Cup Size (1-3)");
+            IntStream.range(0, cupSize.length).forEach(i -> System.out.println(i + 1 + ". " + cupSize[i]));
+            System.out.println("4. Exit");
+            System.out.print("Choice: ");
             while (true) {
-                System.out.println("Enter a Cup Size (S|M|L):");
-                System.out.println("Exit (E):");
-                System.out.print("Choice: ");
-                choice = scan.nextLine();
-                if (choice.equalsIgnoreCase("S") || choice.equalsIgnoreCase("M") || choice.equalsIgnoreCase("L")
-                        || choice.equalsIgnoreCase("E")) {
-                    break;
-                } else {
-                    System.out.println(Colors.ERROR + "Please enter a Cup Size (S|M|L) or (E) to exit." + Colors.RESET + "\n");
+                try {
+                    cupChoice = parseInt(scan.nextLine());
+                    if (cupChoice > 0 && cupChoice < 5) break;
+                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-4!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
             }
-            if (choice.equalsIgnoreCase("e")) {
+            if (cupChoice == 4) {
                 break;
             }
 
@@ -370,15 +371,13 @@ public class UserInterface {
 
             // Creates a drink object
 
-            Item drink = new Drink(drinks[flavorChoice - 1], choice.toUpperCase());
+            Item drink = new Drink(drinks[flavorChoice - 1], cupSize[cupChoice - 1]);
             currentOrder.addItem(drink);
+            System.out.println(currentOrder.getItem(currentOrder.getItems().size()));
             System.out.println(Colors.SUCCESS + "Drink added!" + Colors.RESET + "\n");
-            System.out.print("Would you like to add another drink? (Y/N):");
-            String answer = scan.nextLine();
-            if (answer.equalsIgnoreCase("N")) {
-                break;
-            }
         }
+
+
     }
 
     /**

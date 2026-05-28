@@ -7,7 +7,7 @@ public class Drink implements Item {
 
     public Drink(String flavor, String size) {
         this.flavor = flavor;
-        this.size = size;
+        this.size = size.toUpperCase();
         setPrice();
     }
 
@@ -21,9 +21,9 @@ public class Drink implements Item {
 
     private void setPrice() {
         switch (this.size) {
-            case "S" -> price = 2.00;
-            case "M" -> price = 2.50;
-            case "L" -> price = 3.00;
+            case "SMALL" -> price = 2.00;
+            case "MEDIUM" -> price = 2.50;
+            case "LARGE" -> price = 3.00;
         }
     }
 
