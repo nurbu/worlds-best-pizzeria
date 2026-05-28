@@ -38,9 +38,9 @@ public class ReceiptManager {
             bw.newLine();
             bw.write("Date: " + date + " " + time);
             bw.newLine();
-            for (Item item : items) {
-                bw.write(item.toString());
+            for (int i = 0; i < items.size(); i++) {
                 bw.newLine();
+                bw.write(i + 1 + ". " + items.get(i).toString());
             }
         } catch (IOException e) {
             e.printStackTrace();
