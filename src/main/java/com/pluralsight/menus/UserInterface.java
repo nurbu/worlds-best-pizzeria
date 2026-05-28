@@ -25,7 +25,7 @@ public class UserInterface {
         // Main menu loop
         int choice = -1;
         while (choice != 2) {
-            System.out.println(Colors.HEADER + "Welcome to the World's Best Pizzeria!!!" + Colors.RESET + "\n");
+            System.out.println(Colors.HEADER + "\nWelcome to the World's Best Pizzeria!!!" + Colors.RESET + "\n");
             System.out.println(PremadeFormats.SINGLE_DASHES);
 
             System.out.println("1. Create a new order");
@@ -33,7 +33,7 @@ public class UserInterface {
             System.out.print("Choice: ");
 
             if (!scan.hasNextInt()) {
-                System.out.println(Colors.ERROR + "Please enter 1 or 2." + Colors.RESET + "\n");
+                System.out.println(Colors.ERROR + "\nPlease enter 1 or 2." + Colors.RESET + "\n");
                 scan.nextLine();                 // discard bad input
                 continue;
             }
@@ -43,7 +43,7 @@ public class UserInterface {
             switch (choice) {
                 case 1 -> processNewOrder();
                 case 2 -> System.out.println(Colors.SUCCESS + "\nThank you for visiting our pizzeria!" + Colors.RESET);
-                default -> System.out.println(Colors.ERROR + "Invalid choice!" + Colors.RESET + "\n");
+                default -> System.out.println(Colors.ERROR + "\nInvalid choice!" + Colors.RESET + "\n");
             }
         }
     }
@@ -51,8 +51,8 @@ public class UserInterface {
     private void processNewOrder() {
         int choice = -1;
         while (choice != 7) {
-            System.out.println(Colors.HEADER + "Order Screen!" + Colors.RESET + "\n");
-            System.out.println(PremadeFormats.SINGLE_DASHES);
+            System.out.println(Colors.HEADER + "\nOrder Screen!" + Colors.RESET + "\n");
+            System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
 
             System.out.println("1. Add Pizza");
             System.out.println("2. Add Drink");
@@ -64,7 +64,7 @@ public class UserInterface {
             System.out.print("Choice: ");
 
             if (!scan.hasNextInt()) {
-                System.out.println(Colors.ERROR + "Please enter 1-7." + Colors.RESET + "\n");
+                System.out.println(Colors.ERROR + "\nPlease enter 1-7." + Colors.RESET + "\n");
                 scan.nextLine();                 // discard bad input
                 continue;
             }
@@ -79,108 +79,132 @@ public class UserInterface {
                 case 5 -> processRemoveItem();
                 case 6 -> processCheckout();
                 case 7 -> processCancelOrder();
-                default -> System.out.println(Colors.ERROR + "Invalid choice!" + Colors.RESET + "\n");
+                default -> System.out.println(Colors.ERROR + "\nInvalid Choice!" + Colors.RESET + "\n");
             }
         }
     }
 
     private void processAddPizza() {
-        System.out.println("Creating Custom Pizza");
-        int sizeNum;
+        System.out.println("Adding Pizza");
+        int choice;
         while (true) {
-            System.out.println("Size?");
-            System.out.println("1. 8 inch");
-            System.out.println("2. 12 inch");
-            System.out.println("3. 16 inch");
-            System.out.println("4. Exit");
+            System.out.println("1. Signature Pizzas");
+            System.out.println("2. Create Custom Pizza");
+            System.out.println("3. Exit");
             System.out.print("Choice: ");
             try {
-                sizeNum = parseInt(scan.nextLine());
-                if (sizeNum > 0 && sizeNum < 4) break;
-                else System.out.println(Colors.ERROR + "Invalid size!" + Colors.RESET + "\n");
+                choice = parseInt(scan.nextLine());
+                if (choice > 0 && choice < 4) break;
+                else System.out.println(Colors.ERROR + "\nInvalid Choice!" + Colors.RESET + "\n");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        if (sizeNum == 4) return;
-        int size = 0;
-        switch (sizeNum) {
-            case 1 -> size = 8;
-            case 2 -> size = 12;
-            case 3 -> size = 16;
-        }
-        int crustNum = 0;
-        while (true) {
-            System.out.println("Type of Crust? (1-4)");
-            System.out.println("1. thin");
-            System.out.println("2. regular");
-            System.out.println("3. thick");
-            System.out.println("4. cauliflower");
-            System.out.print("Choice: ");
-            try {
-                crustNum = parseInt(scan.nextLine());
-                if (crustNum > 0 && crustNum < 5) break;
-                else System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        String crustType = "";
-        switch (crustNum) {
-            case 1 -> crustType = "thin";
-            case 2 -> crustType = "regular";
-            case 3 -> crustType = "thick";
-            case 4 -> crustType = "cauliflower";
-        }
-        boolean stuffedCrust = false;
-        while (true) {
-            System.out.println("Stuffed Crust? (1-2)");
-            System.out.println("1. Yes");
-            System.out.println("2. No");
-            try {
-                int checker = parseInt(scan.nextLine());
-                if (checker == 1 || checker == 2) {
-                    if (checker == 1) stuffedCrust = true;
-                    break;
-                } else System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        Pizza pizza = new Pizza(size, crustType, stuffedCrust);
+        if (choice == 3) return;
+        else if (choice == 1) {
 
-        int toppingChoice = -1;
-        while (toppingChoice != 6) {
-            System.out.println("Toppings options");
-            System.out.println("1. Meat");
-            System.out.println("2. Cheese");
-            System.out.println("3. Other toppings");
-            System.out.println("4. Select sauces");
-            System.out.println("5. Side");
-            System.out.println("6. Exit");
-            System.out.print("Choice: ");
+        } else if (choice == 2) {
+            System.out.println("\n" + PremadeFormats.DOUBLE_DASHES_COLORFUL);
+            System.out.println("\nCreating Custom Pizza");
+            System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
+            int sizeNum;
             while (true) {
+                System.out.println("\nPizza Size? (1-4)");
+                System.out.println("1. 8\"");
+                System.out.println("2. 12\"");
+                System.out.println("3. 16\"");
+                System.out.println("4. Exit");
+                System.out.print("Choice: ");
                 try {
-                    toppingChoice = parseInt(scan.nextLine());
-                    if (toppingChoice > 0 && toppingChoice < 7) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-6!" + Colors.RESET + "\n");
+                    sizeNum = parseInt(scan.nextLine());
+                    if (sizeNum > 0 && sizeNum < 4) break;
+                    else System.out.println(Colors.ERROR + "\nInvalid size!" + Colors.RESET + "\n");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
             }
-            switch (toppingChoice) {
-                case 1 -> processAddMeat(pizza);
-                case 2 -> processAddCheese(pizza);
-                case 3 -> processAddRegular(pizza);
-                case 4 -> processAddSauces(pizza);
-                case 5 -> processAddSides(pizza);
-                case 6 -> {
-                }
-                default -> System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
+
+            if (sizeNum == 4) return;
+            int size = 0;
+            switch (sizeNum) {
+                case 1 -> size = 8;
+                case 2 -> size = 12;
+                case 3 -> size = 16;
             }
+            int crustNum = 0;
+            while (true) {
+                System.out.println("\nType of Crust? (1-4)");
+                System.out.println("\n1. Thin");
+                System.out.println("2. Regular");
+                System.out.println("3. Thick");
+                System.out.println("4. Cauliflower");
+                System.out.print("Choice: ");
+                try {
+                    crustNum = parseInt(scan.nextLine());
+                    if (crustNum > 0 && crustNum < 5) break;
+                    else System.out.println(Colors.ERROR + "\nInvalid Input!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            String crustType = "";
+            switch (crustNum) {
+                case 1 -> crustType = "thin";
+                case 2 -> crustType = "regular";
+                case 3 -> crustType = "thick";
+                case 4 -> crustType = "cauliflower";
+            }
+            boolean stuffedCrust = false;
+            while (true) {
+                System.out.println("\nStuffed Crust? (1-2)");
+                System.out.println("1. Yes");
+                System.out.println("2. No");
+                try {
+                    int checker = parseInt(scan.nextLine());
+                    if (checker == 1 || checker == 2) {
+                        if (checker == 1) stuffedCrust = true;
+                        break;
+                    } else System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            Pizza pizza = new Pizza(size, crustType, stuffedCrust);
+
+            int toppingChoice = -1;
+            while (toppingChoice != 6) {
+                System.out.println("\nToppings options");
+                System.out.println("\n1. Meat");
+                System.out.println("2. Cheese");
+                System.out.println("3. Other toppings");
+                System.out.println("4. Select sauces");
+                System.out.println("5. Side");
+                System.out.println("6. Exit");
+                System.out.print("Choice: ");
+                while (true) {
+                    try {
+                        toppingChoice = parseInt(scan.nextLine());
+                        if (toppingChoice > 0 && toppingChoice < 7) break;
+                        else System.out.println(Colors.ERROR + "\nInvalid Input Enter 1-6!" + Colors.RESET + "\n");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                switch (toppingChoice) {
+                    case 1 -> processAddMeat(pizza);
+                    case 2 -> processAddCheese(pizza);
+                    case 3 -> processAddRegular(pizza);
+                    case 4 -> processAddSauces(pizza);
+                    case 5 -> processAddSides(pizza);
+                    case 6 -> {
+                    }
+                    default -> System.out.println(Colors.ERROR + "\nInvalid Input!" + Colors.RESET + "\n");
+                }
+            }
+
+            currentOrder.addItem(pizza);
         }
-        currentOrder.addItem(pizza);
 
     }
 
@@ -199,7 +223,7 @@ public class UserInterface {
 
     private void processAddMeat(Pizza pizza) {
         String[] meats = {"Pepperoni", "Sausage", "Ham", "Bacon", "Chicken", "Meatball"};
-        System.out.println("Meat Toppings");
+        System.out.println("\nMeat Toppings\n");
         int choice = -1;
         while (choice != 7) {
             IntStream.range(0, meats.length).forEach(i -> System.out.println(i + 1 + ". " + meats[i]));
@@ -209,7 +233,7 @@ public class UserInterface {
                 try {
                     choice = parseInt(scan.nextLine());
                     if (choice > 0 && choice < 8) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-7!" + Colors.RESET + "\n");
+                    else System.out.println(Colors.ERROR + "\nInvalid Input Enter 1-7!" + Colors.RESET + "\n");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
@@ -227,7 +251,7 @@ public class UserInterface {
 
     private void processAddCheese(Pizza pizza) {
         String[] cheeses = {"Mozzarella", "Parmesan", "Ricotta", "Goat Cheese", "Buffalo"};
-        System.out.println("Cheese Toppings");
+        System.out.println("\nCheese Toppings\n");
         int choice = -1;
         while (choice != 6) {
             IntStream.range(0, cheeses.length).forEach(i -> System.out.println(i + 1 + ". " + cheeses[i]));
@@ -237,7 +261,7 @@ public class UserInterface {
                 try {
                     choice = parseInt(scan.nextLine());
                     if (choice > 0 && choice < 7) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-7!" + Colors.RESET + "\n");
+                    else System.out.println(Colors.ERROR + "\nInvalid Input Enter 1-7!" + Colors.RESET + "\n");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
@@ -280,7 +304,7 @@ public class UserInterface {
 
     private void processAddSauces(Pizza pizza) {
         String[] sauces = {"Marinara", "Alfredo", "Pesto", "BBQ", "Buffalo", "Olive oil"};
-        System.out.println("Sauces");
+        System.out.println("\nSauces\n");
         int choice = -1;
         while (choice != 7) {
             IntStream.range(0, sauces.length).forEach(i -> System.out.println(i + 1 + ". " + sauces[i]));
@@ -306,7 +330,7 @@ public class UserInterface {
 
     private void processAddSides(Pizza pizza) {
         String[] sides = {"Red Pepper", "Parmesan"};
-        System.out.println("Meat Toppings");
+        System.out.println("\nMeat Toppings\n");
         int choice = -1;
         while (choice != 3) {
             IntStream.range(0, sides.length).forEach(i -> System.out.println(i + 1 + ". " + sides[i]));
@@ -342,13 +366,14 @@ public class UserInterface {
         /**
          * Main loop repeats asking to add more drinks
          */
-        System.out.println(Colors.HEADER + "Drink Menu!" + Colors.RESET + "\n");
-        System.out.println(PremadeFormats.SINGLE_DASHES);
+        System.out.println(PremadeFormats.DOUBLE_DASHES_COLORFUL);
+        System.out.println(Colors.HEADER + "\nDrink Menu!" + Colors.RESET + "\n");
+        System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
 
         // Allows user to exit or continue with adding drink to order
 
         while (true) {
-            System.out.println("Enter a Cup Size (1-3)");
+            System.out.println("\nEnter a Cup Size (1-3)");
             IntStream.range(0, cupSize.length).forEach(i -> System.out.println(i + 1 + ". " + cupSize[i]));
             System.out.println("4. Exit");
             System.out.print("Choice: ");
@@ -356,7 +381,7 @@ public class UserInterface {
                 try {
                     cupChoice = parseInt(scan.nextLine());
                     if (cupChoice > 0 && cupChoice < 5) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-4!" + Colors.RESET + "\n");
+                    else System.out.println(Colors.ERROR + "\nInvalid Input Enter 1-4!" + Colors.RESET + "\n");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
@@ -374,7 +399,7 @@ public class UserInterface {
                 try {
                     flavorChoice = parseInt(scan.nextLine());
                     if (!(flavorChoice > 0 && flavorChoice < 7)) {
-                        System.out.println(Colors.ERROR + "Enter a number 1-6" + Colors.RESET + "\n");
+                        System.out.println(Colors.ERROR + "\nEnter a number 1-6\n" + Colors.RESET + "\n");
                     } else {
                         break;
                     }
@@ -388,7 +413,7 @@ public class UserInterface {
             Item drink = new Drink(drinks[flavorChoice - 1], cupSize[cupChoice - 1]);
             currentOrder.addItem(drink);
             System.out.println(currentOrder.getItem(currentOrder.getItems().size()));
-            System.out.println(Colors.SUCCESS + "Drink added!" + Colors.RESET + "\n");
+            System.out.println(Colors.SUCCESS + "\nDrink added!" + Colors.RESET + "\n");
         }
 
 
@@ -400,7 +425,7 @@ public class UserInterface {
      */
     private void processAddGarlicKnot() {
         String[] garlicKnots = {"Classic", "Parmesan", "Cheesy", "Pizza-style", "Spicy", "Everything Bagel"};
-        System.out.println("Garlic Knots");
+        System.out.println("\nGarlic Knots");
 
 
         int choice = -1;

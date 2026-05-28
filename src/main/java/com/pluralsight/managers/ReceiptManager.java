@@ -31,7 +31,8 @@ public class ReceiptManager {
         String date = now.format(PremadeFormats.DATE_FMT);
         String time = now.format(PremadeFormats.TIME_FMT);
         String fileName = now.format(PremadeFormats.DATETIME_FMT);
-        File file = new File(folder, fileName);
+        File file = new File(folder, fileName.concat(".txt"));
+        double total = 0;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write(PremadeFormats.STORE_HEADER);
             bw.newLine();
@@ -41,7 +42,12 @@ public class ReceiptManager {
             for (int i = 0; i < items.size(); i++) {
                 bw.newLine();
                 bw.write(i + 1 + ". " + items.get(i).toString());
+                total += items.get(i).getPrice();
             }
+            bw.newLine();
+            bw.write(PremadeFormats.DOUBLE_DASHES);
+            bw.write("Total Price: " + total);
+            bw.write(PremadeFormats.SINGLE_DASHES);
         } catch (IOException e) {
             e.printStackTrace();
         }

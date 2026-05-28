@@ -113,7 +113,7 @@ public class Pizza implements Item {
                 }
             }
         }
-        sb.append("Total Price: " + getPrice() + "\n");
+        sb.append("Total Pizza Price: " + getPrice() + "\n");
         return sb.toString();
     }
 
