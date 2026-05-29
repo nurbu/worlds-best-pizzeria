@@ -46,7 +46,7 @@ public class ReceiptManager {
             }
             bw.newLine();
             bw.write(PremadeFormats.DOUBLE_DASHES + "\n");
-            bw.write(String.format("Total Price: %.2f%n", total));
+            bw.write(String.format("Total Price: $%.2f%n", total));
             bw.write(PremadeFormats.SINGLE_DASHES);
         } catch (IOException e) {
             e.printStackTrace();

@@ -53,7 +53,7 @@ public class Order {
         }
         IntStream.range(0, items.size()).forEach(i -> System.out.println(i + 1 + Colors.TEXT + ". " + items.get(i)));
         System.out.println(PremadeFormats.DOUBLE_DASHES + "\n");
-        System.out.println(String.format("Total Price: %.2f%n", getTotalPrice()));
+        System.out.println(String.format("Total Price: $%.2f%n", getTotalPrice()));
         System.out.println(PremadeFormats.SINGLE_DASHES + Colors.RESET);
     }
 
