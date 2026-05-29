@@ -30,12 +30,10 @@ public class UserInterface {
         // Main menu loop
         int choice = -1;
         while (choice != 2) {
-            System.out.println(Colors.HEADER + "\nWelcome to the World's Best Pizzeria!!!" + Colors.RESET + "\n");
-            System.out.println(PremadeFormats.SINGLE_DASHES);
-
-            System.out.println("1. Create a new order");
+            System.out.println(PremadeFormats.headingFormat("Welcome to the World's Best Pizzeria!!!"));
+            System.out.println(Colors.TEXT + "1. Create a new order");
             System.out.println("2. Exit");
-            System.out.print("Choice: ");
+            System.out.print("Choice: " + Colors.RESET);
 
             if (!scan.hasNextInt()) {
                 System.out.println(Colors.ERROR + "\nPlease enter 1 or 2." + Colors.RESET + "\n");
@@ -56,17 +54,15 @@ public class UserInterface {
     private void processNewOrder() {
         int choice = -1;
         while (choice != 7) {
-            System.out.println(Colors.HEADER + "\nOrder Screen!" + Colors.RESET + "\n");
-            System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
-
-            System.out.println("1. Add Pizza");
+            System.out.println(PremadeFormats.headingFormat("Order Screen!"));
+            System.out.println(Colors.TEXT + "1. Add Pizza");
             System.out.println("2. Add Drink");
             System.out.println("3. Add Garlic Knot");
             System.out.println("4. Display order");
             System.out.println("5. Remove Item");
             System.out.println("6. Checkout");
             System.out.println("7. Cancel order");
-            System.out.print("Choice: ");
+            System.out.print("Choice: " + Colors.RESET);
 
             if (!scan.hasNextInt()) {
                 System.out.println(Colors.ERROR + "\nPlease enter 1-7." + Colors.RESET + "\n");
@@ -93,10 +89,10 @@ public class UserInterface {
         System.out.println(PremadeFormats.headingFormat("Add Pizza"));
         int choice;
         while (true) {
-            System.out.println("1. Signature Pizzas");
+            System.out.println(Colors.TEXT + "1. Signature Pizzas");
             System.out.println("2. Create Custom Pizza");
             System.out.println("3. Exit");
-            System.out.print("Choice: ");
+            System.out.print("Choice: " + Colors.RESET);
             try {
                 choice = parseInt(scan.nextLine());
                 if (choice > 0 && choice < 4) break;
@@ -114,14 +110,14 @@ public class UserInterface {
             int i;
             while (true) {
                 i = 1;
-                System.out.println("Signature Pizzas");
+                System.out.println(PremadeFormats.headingFormat("Signature Pizzas"));
                 for (Map.Entry<String, Pizza> entry : pizzas.entrySet()) {
-                    System.out.println("\n" + i + ". " + entry.getKey());
+                    System.out.println(Colors.TEXT + "\n" + i + ". " + entry.getKey());
                     System.out.println(entry.getValue());
                     i += 1;
                 }
                 System.out.println(i + ". Exit");
-                System.out.print("Choice: ");
+                System.out.print("Choice: " + Colors.RESET);
                 try {
                     signatureChoice = parseInt(scan.nextLine());
                     if (signatureChoice > 0 && signatureChoice < i + 1) break;
@@ -134,9 +130,10 @@ public class UserInterface {
             Pizza pizza = pizzasIndexedValues.get(signatureChoice - 1);
             int customizeChoice;
             while (true) {
-                System.out.println("Would you like to customize the pizza?");
-                System.out.println("1. Yes");
+                System.out.println(PremadeFormats.headingFormat("Customize Pizza"));
+                System.out.println(Colors.TEXT + "1. Yes");
                 System.out.println("2. No");
+                System.out.print("Choice: " + Colors.RESET);
                 try {
                     customizeChoice = parseInt(scan.nextLine());
                     if (customizeChoice == 1 || customizeChoice == 2) break;
@@ -156,12 +153,12 @@ public class UserInterface {
             System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
             int sizeNum;
             while (true) {
-                System.out.println("\nPizza Size? (1-4)");
-                System.out.println("1. 8\"");
+                System.out.println(PremadeFormats.headingFormat("Pizza Size? (1-4)"));
+                System.out.println(Colors.TEXT + "1. 8\"");
                 System.out.println("2. 12\"");
                 System.out.println("3. 16\"");
                 System.out.println("4. Exit");
-                System.out.print("Choice: ");
+                System.out.print("Choice: " + Colors.RESET);
                 try {
                     sizeNum = parseInt(scan.nextLine());
                     if (sizeNum > 0 && sizeNum < 5) break;
@@ -180,12 +177,12 @@ public class UserInterface {
             }
             int crustNum;
             while (true) {
-                System.out.println("\nType of Crust? (1-4)");
-                System.out.println("\n1. Thin");
+                System.out.println(PremadeFormats.headingFormat("Type of Crust? (1-4)"));
+                System.out.println(Colors.TEXT + "1. Thin");
                 System.out.println("2. Regular");
                 System.out.println("3. Thick");
                 System.out.println("4. Cauliflower");
-                System.out.print("Choice: ");
+                System.out.print("Choice: " + Colors.RESET);
                 try {
                     crustNum = parseInt(scan.nextLine());
                     if (crustNum > 0 && crustNum < 5) break;
@@ -203,9 +200,10 @@ public class UserInterface {
             }
             boolean stuffedCrust = false;
             while (true) {
-                System.out.println("\nStuffed Crust? (1-2)");
-                System.out.println("1. Yes");
+                System.out.println(PremadeFormats.headingFormat("Stuffed Crust? (1-2)"));
+                System.out.println(Colors.TEXT + "1. Yes");
                 System.out.println("2. No");
+                System.out.print("Choice: " + Colors.RESET);
                 try {
                     int checker = parseInt(scan.nextLine());
                     if (checker == 1 || checker == 2) {
@@ -221,7 +219,7 @@ public class UserInterface {
             String[] toppings = {"Meat", "Cheese", "Regular toppings", "Sauces", "Side"};
             int toppingChoice;
             while (true) {
-                System.out.println("\nToppings options");
+                System.out.println(PremadeFormats.headingFormat("Toppings options"));
                 toppingChoice = getMenuChoice(toppings);
                 if (toppingChoice == toppings.length + 1) break;
                 switch (toppingChoice) {
@@ -239,20 +237,19 @@ public class UserInterface {
     }
 
     private void customizePremadePizza(Pizza pizza) {
-        System.out.println("\nCustomizing Pizza");
+        System.out.println(PremadeFormats.headingFormat("Customizing Pizza"));
         String[] options = {"Add Toppings", "Remove Toppings"};
         int choice;
         while (true) {
-            System.out.println("\nMeat Toppings\n");
             choice = getMenuChoice(options) - 1;
             if (choice == options.length) break;
             else if (choice == 1) {
                 while (true) {
                     List<Topping> currentTopping = pizza.getAllToppings();
-                    System.out.println("Current Toppings\n");
-                    IntStream.range(0, currentTopping.size()).forEach(i -> System.out.println(i + 1 + ". " + currentTopping.get(i)));
+                    System.out.println(PremadeFormats.headingFormat("Current Toppings"));
+                    IntStream.range(0, currentTopping.size()).forEach(i -> System.out.println(i + 1 + ". " + Colors.TEXT + currentTopping.get(i)));
                     System.out.println(currentTopping.size() + 1 + ". Exit");
-                    System.out.print("Choice: ");
+                    System.out.print("Choice: " + Colors.RESET);
                     int removingChoice;
                     while (true) {
                         try {
@@ -273,7 +270,7 @@ public class UserInterface {
                 String[] toppings = {"Meat", "Cheese", "Regular toppings", "Sauces", "Side"};
                 int toppingChoice;
                 while (true) {
-                    System.out.println("\nToppings options");
+                    System.out.println(PremadeFormats.headingFormat("Toppings options"));
                     toppingChoice = getMenuChoice(toppings);
                     if (toppingChoice == toppings.length + 1) break;
                     switch (toppingChoice) {
@@ -310,13 +307,13 @@ public class UserInterface {
         String[] meats = {"Pepperoni", "Sausage", "Ham", "Bacon", "Chicken", "Meatball"};
         int choice;
         while (true) {
-            System.out.println("\nMeat Toppings\n");
+            System.out.println(PremadeFormats.headingFormat("Meat Toppings"));
             choice = getMenuChoice(meats) - 1;
             if (choice == meats.length) break;
             String meatType = meats[choice];
             boolean isExtra = pizza.getAllToppings().stream().anyMatch(topping -> topping.getName().equals(meatType));
             pizza.addTopping(new Meat(meatType, isExtra, pizza.getSize()));
-            System.out.println("Add More!\n");
+            System.out.println("Add More!");
         }
     }
 
@@ -326,13 +323,13 @@ public class UserInterface {
         String[] cheeses = {"Mozzarella", "Parmesan", "Ricotta", "Goat Cheese", "Buffalo"};
         int choice;
         while (true) {
-            System.out.println("\nCheese Toppings\n");
+            System.out.println(PremadeFormats.headingFormat("Cheese Toppings"));
             choice = getMenuChoice(cheeses) - 1;
             if (choice == cheeses.length) break;
             String cheeseType = cheeses[choice];
             boolean isExtra = pizza.getAllToppings().stream().anyMatch(topping -> topping.getName().equals(cheeseType));
             pizza.addTopping(new Cheese(cheeseType, isExtra, pizza.getSize()));
-            System.out.println("Add More!\n");
+            System.out.println("Add More!");
         }
     }
 
@@ -342,13 +339,13 @@ public class UserInterface {
 
         int choice;
         while (true) {
-            System.out.println("Regular Toppings");
+            System.out.println(PremadeFormats.headingFormat("Regular Toppings"));
             choice = getMenuChoice(regularToppings) - 1;
             if (choice == regularToppings.length) break;
             String regularType = regularToppings[choice];
             Topping topping = new RegularTopping(regularType);
             pizza.addTopping(topping);
-            System.out.println("Add More!\n");
+            System.out.println("Add More!");
         }
     }
 
@@ -357,13 +354,13 @@ public class UserInterface {
 
         int choice;
         while (true) {
-            System.out.println("\nSauces\n");
+            System.out.println(PremadeFormats.headingFormat("Sauces"));
             choice = getMenuChoice(sauces) - 1;
             if (choice == sauces.length) break;
             String sauceType = sauces[choice];
             Topping sauce = new Sauce(sauceType);
             pizza.addTopping(sauce);
-            System.out.println("Add More!\n");
+            System.out.println("Add More!");
         }
     }
 
@@ -371,13 +368,13 @@ public class UserInterface {
         String[] sides = {"Red Pepper", "Parmesan"};
         int choice;
         while (true) {
-            System.out.println("\nSides\n");
+            System.out.println(PremadeFormats.headingFormat("Sides"));
             choice = getMenuChoice(sides) - 1;
             if (choice == sides.length) break;
             String sideType = sides[choice];
             Topping side = new Sauce(sideType);
             pizza.addTopping(side);
-            System.out.println("Add More!\n");
+            System.out.println("Add More!");
         }
     }
 
@@ -391,16 +388,14 @@ public class UserInterface {
         String[] cupSize = {"Small", "Medium", "Large"};
         // Main loop repeats asking to add more drinks
 
-        System.out.println(PremadeFormats.DOUBLE_DASHES_COLORFUL);
-        System.out.println(Colors.HEADER + "\nDrink Menu!" + Colors.RESET + "\n");
-        System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
+        System.out.println(PremadeFormats.headingFormat("Drink Menu"));
 
         // Allows user to exit or continue with adding drink to order
 
 
         while (true) {
             int cupSizeChoice;
-            System.out.println("\nEnter a Cup Size (1-3)");
+            System.out.println(PremadeFormats.headingFormat("Enter a Cup Size (1-3)"));
             cupSizeChoice = getMenuChoice(cupSize) - 1;
             if (cupSizeChoice == cupSize.length) break;
 
@@ -442,8 +437,8 @@ public class UserInterface {
 
         int choice;
         while (true) {
-            System.out.println("\nGarlic Knots");
-            System.out.println("Pick a flavor (1-6)");
+            System.out.println(PremadeFormats.headingFormat("Garlic Knots"));
+            System.out.println(Colors.TEXT + "Pick a flavor (1-6)" + Colors.RESET);
             choice = getMenuChoice(garlicKnots) - 1;
             if (choice == garlicKnots.length) break;
             String garlicKnotType = garlicKnots[choice];
@@ -451,7 +446,7 @@ public class UserInterface {
             currentOrder.addItem(flavoredKnot);
             System.out.println(currentOrder.getItem(currentOrder.getItems().size()));
             System.out.println(Colors.SUCCESS + "Garlic Knot added!" + Colors.RESET + "\n");
-            System.out.println("Add More!\n");
+            System.out.println("Add More!");
         }
 
     }
@@ -465,14 +460,14 @@ public class UserInterface {
     }
 
     private void processRemoveItem() {
-        System.out.println("Removing an item from the order");
-        System.out.println("Enter number associated with item (1,2,3,...)");
+        System.out.println(PremadeFormats.headingFormat("Remove Item"));
+        System.out.println(Colors.TEXT + "Enter number associated with item (1,2,3,...)");
         int choice = -1;
         int orderSize = currentOrder.getItems().size() + 1;
         while (choice != orderSize) {
             currentOrder.displayOrder();
             System.out.println(orderSize + ". Done");
-            System.out.print("Choice: ");
+            System.out.print("Choice: " + Colors.RESET);
             while (true) {
                 try {
                     choice = parseInt(scan.nextLine());
@@ -498,7 +493,7 @@ public class UserInterface {
      * Send all items in order to be written onto the receipt.
      */
     private void processCheckout() {
-        System.out.println("Checking out\n");
+        System.out.println(PremadeFormats.headingFormat("Checkout"));
         currentOrder.displayOrder();
         ReceiptManager.createReceipt(currentOrder.getItems());
     }
@@ -525,9 +520,9 @@ public class UserInterface {
      */
 
     private int getMenuChoice(String[] options) {
-        IntStream.range(0, options.length).forEach(i -> System.out.println(i + 1 + ". " + options[i]));
+        IntStream.range(0, options.length).forEach(i -> System.out.println(i + 1 + Colors.TEXT + ". " + options[i]));
         System.out.println(options.length + 1 + ". Exit");
-        System.out.print("Choice:");
+        System.out.print("Choice: " + Colors.RESET);
         while (true) {
             try {
                 int choice = parseInt(scan.nextLine());
