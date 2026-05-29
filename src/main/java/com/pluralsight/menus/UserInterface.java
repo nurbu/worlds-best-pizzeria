@@ -529,6 +529,7 @@ public class UserInterface {
      */
     private void processCheckout() {
         System.out.println(PremadeFormats.headingFormat("Checkout"));
+        System.out.println(PremadeFormats.STORE_HEADER);
         currentOrder.displayOrder();
         ReceiptManager.createReceipt(currentOrder.getItems());
         currentOrder = new Order();

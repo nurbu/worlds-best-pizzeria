@@ -1,5 +1,8 @@
 package com.pluralsight.models;
 
+import com.pluralsight.utilities.Colors;
+import com.pluralsight.utilities.PremadeFormats;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -35,6 +38,10 @@ public class Order {
         return items.get(index - 1);
     }
 
+    public double getTotalPrice() {
+        return items.stream().mapToDouble(Item::getPrice).sum();
+    }
+
     public List<Item> getItems() {
         return items;
     }
@@ -44,7 +51,10 @@ public class Order {
             System.out.println("order is empty");
             return;
         }
-        IntStream.range(0, items.size()).forEach(i -> System.out.println(i + 1 + ". " + items.get(i)));
+        IntStream.range(0, items.size()).forEach(i -> System.out.println(i + 1 + Colors.TEXT + ". " + items.get(i)));
+        System.out.println(PremadeFormats.DOUBLE_DASHES + "\n");
+        System.out.println(String.format("Total Price: %.2f%n", getTotalPrice()));
+        System.out.println(PremadeFormats.SINGLE_DASHES + Colors.RESET);
     }
 
     public int getOrderId() {
