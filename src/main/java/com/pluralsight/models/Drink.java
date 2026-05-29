@@ -34,6 +34,6 @@ public class Drink implements Item {
 
     @Override
     public String toString() {
-        return size + " " + flavor + " $" + price + "\n";
+        return String.format("%s %s $%.2f%n", size, flavor, price);
     }
 }

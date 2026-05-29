@@ -2,6 +2,13 @@ package com.pluralsight.models.toppings;
 
 public class Cheese extends PremiumTopping {
 
+    /**
+     * Based off isExtra applies correct pricing.
+     *
+     * @param name
+     * @param isExtra
+     * @param pizzaSize
+     */
     public Cheese(String name, boolean isExtra, int pizzaSize) {
         super(name, isExtra, pizzaSize);
     }

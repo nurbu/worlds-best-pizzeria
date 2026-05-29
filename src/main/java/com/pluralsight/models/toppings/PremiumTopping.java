@@ -24,8 +24,8 @@ public abstract class PremiumTopping extends Topping {
     @Override
     public String toString() {
         if (isExtra) {
-            return getName() + " (Extra) " + getPrice();
+            return String.format("%s (Extra) $%.2f", name, getPrice());
         }
-        return getName() + " " + getPrice();
+        return String.format("%s $%.2f", name, getPrice());
     }
 }

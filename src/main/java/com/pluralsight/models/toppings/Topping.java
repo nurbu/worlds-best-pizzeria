@@ -15,6 +15,6 @@ public abstract class Topping {
 
     @Override
     public String toString() {
-        return this.getName() + " $" + 0.00;
+        return String.format("%s $%.2f", name, getPrice());
     }
 }

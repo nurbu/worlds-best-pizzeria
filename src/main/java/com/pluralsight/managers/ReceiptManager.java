@@ -45,8 +45,8 @@ public class ReceiptManager {
                 total += items.get(i).getPrice();
             }
             bw.newLine();
-            bw.write(PremadeFormats.DOUBLE_DASHES);
-            bw.write("Total Price: " + total);
+            bw.write(PremadeFormats.DOUBLE_DASHES + "\n");
+            bw.write("Total Price: " + total + "\n");
             bw.write(PremadeFormats.SINGLE_DASHES);
         } catch (IOException e) {
             e.printStackTrace();

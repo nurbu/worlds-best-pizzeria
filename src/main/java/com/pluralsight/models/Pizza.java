@@ -78,7 +78,7 @@ public class Pizza implements Item {
         if (size == 8) basePrice = 8.50;
         else if (size == 12) basePrice = 12.00;
         else basePrice = 16.50;
-        sb.append("Base Price: " + basePrice + "\n");
+        sb.append(String.format("Base Price: $%.2f%n", basePrice));
         sb.append("Crust: " + crustType + "\n");
         if (toppings.size() > 0) {
             sb.append("Toppings\n");
@@ -113,7 +113,7 @@ public class Pizza implements Item {
                 }
             }
         }
-        sb.append("Total Pizza Price: " + getPrice() + "\n");
+        sb.append(String.format("Total Pizza Price: $%.2f%n", getPrice()));
         return sb.toString();
     }
 

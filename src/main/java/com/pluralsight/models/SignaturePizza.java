@@ -9,6 +9,11 @@ import java.util.Map;
 
 public class SignaturePizza {
 
+    /**
+     * Creates a hashMap to store name and premade pizzas
+     *
+     * @return A map with Premade pizza's name and instance
+     */
     public static Map<String, Pizza> loadSignaturePizzas() {
         Map<String, Pizza> signaturePizzas = new HashMap<String, Pizza>();
         Pizza Veggie = new Pizza(8, "Regular", false);
