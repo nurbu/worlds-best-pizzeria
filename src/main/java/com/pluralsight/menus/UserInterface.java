@@ -51,6 +51,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Main Ordering System
+     */
     private void processNewOrder() {
         int choice = -1;
         while (choice != 7) {
@@ -85,7 +88,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Allows user to choose between Signature and custom
+     */
     private void processAddPizza() {
+        // Handles Choosing between which Pizza user likes
         System.out.println(PremadeFormats.headingFormat("Add Pizza"));
         int choice;
         while (true) {
@@ -102,15 +109,19 @@ public class UserInterface {
             }
         }
 
+        // User choices to add a Signature Pizza
 
         if (choice == 1) {
+            // Map has name and Pizza instance
             Map<String, Pizza> pizzas = loadSignaturePizzas();
+            // Help give pizza's values indexes
             List<Pizza> pizzasIndexedValues = new ArrayList<>(pizzas.values());
             int signatureChoice;
             int i;
             while (true) {
                 i = 1;
                 System.out.println(PremadeFormats.headingFormat("Signature Pizzas"));
+                // Prints both the name of signature and the toString
                 for (Map.Entry<String, Pizza> entry : pizzas.entrySet()) {
                     System.out.println(Colors.TEXT + "\n" + i + ". " + entry.getKey());
                     System.out.println(entry.getValue());
@@ -118,6 +129,7 @@ public class UserInterface {
                 }
                 System.out.println(i + ". Exit");
                 System.out.print("Choice: " + Colors.RESET);
+                // Gets the user choice on signature pizza
                 try {
                     signatureChoice = parseInt(scan.nextLine());
                     if (signatureChoice > 0 && signatureChoice < i + 1) break;
@@ -126,9 +138,13 @@ public class UserInterface {
                     System.out.println(e.getMessage());
                 }
             }
+            // If user choices exit
             if (signatureChoice == pizzas.size() + 1) return;
+
+            // Uses user choice to match the index with array to create an instance here
             Pizza pizza = pizzasIndexedValues.get(signatureChoice - 1);
             int customizeChoice;
+            // Customizing pizza
             while (true) {
                 System.out.println(PremadeFormats.headingFormat("Customize Pizza"));
                 System.out.println(Colors.TEXT + "1. Yes");
@@ -142,15 +158,17 @@ public class UserInterface {
                     System.out.println(e.getMessage());
                 }
             }
+            // If customizing use helper function to handle all removing and adding
             if (customizeChoice == 1) customizePremadePizza(pizza);
+            // After pizza's topping list is update add list
             currentOrder.addItem(pizza);
             System.out.println(pizza);
             System.out.println(Colors.SUCCESS + "\nPizza Added Successfully!" + Colors.RESET);
 
-        } else if (choice == 2) {
-            System.out.println("\n" + PremadeFormats.DOUBLE_DASHES_COLORFUL);
-            System.out.println("\nCreating Custom Pizza");
-            System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
+        }
+        // user choices have a custom pizza
+        else if (choice == 2) {
+            System.out.println(PremadeFormats.headingFormat("Creating Custom Pizza"));
             int sizeNum;
             while (true) {
                 System.out.println(PremadeFormats.headingFormat("Pizza Size? (1-4)"));
@@ -167,7 +185,7 @@ public class UserInterface {
                     System.out.println(e.getMessage());
                 }
             }
-
+            // User decides to cancel pizza order
             if (sizeNum == 4) return;
             int size = 0;
             switch (sizeNum) {
@@ -214,6 +232,11 @@ public class UserInterface {
                     System.out.println(e.getMessage());
                 }
             }
+            /**
+             * Loops list to print all toppings (numbered 1,2,...)
+             * Makes sure toppingChoice is valid using getMenuChoice
+             * Uses valid choice with switch case
+             */
             Pizza pizza = new Pizza(size, crustType, stuffedCrust);
 
             String[] toppings = {"Meat", "Cheese", "Regular toppings", "Sauces", "Side"};
@@ -231,7 +254,7 @@ public class UserInterface {
                     default -> System.out.println(Colors.ERROR + "\nInvalid Input!" + Colors.RESET + "\n");
                 }
             }
-
+            // After pizza has all the toppings customized auto add to order
             currentOrder.addItem(pizza);
         }
     }
@@ -292,13 +315,11 @@ public class UserInterface {
        /* --------------------------------------------------------------------------
        Topping's Helper Functions
 
-     * Displays available toppings (numbered).
-     * Uses parseInt helper within try/catch wrapped in a while
-     * to help get valid input.
+     * Displays available toppings (numbered) and check inputs
+     * using getMenuChoice
      * Premium Toppings only, checks if topping name already in
      pizza's topping list to make isExtra true for correct pricing and toString.
-      * Auto loops until user.
-      *
+     *
       @param pizza has a toppings list to append to.
        -------------------------------------------------------------------------- */
 

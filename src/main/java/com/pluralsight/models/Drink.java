@@ -15,14 +15,6 @@ public class Drink implements Item {
         setPrice();
     }
 
-    public String getFlavor() {
-        return flavor;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
     /**
      * Custom price set based off the cup's size only
      */

@@ -25,12 +25,7 @@ public class Pizza implements Item {
     public void addTopping(Topping topping) {
         this.toppings.add(topping);
     }
-
-    public Topping getTopping(int index) {
-        return this.toppings.get(index);
-    }
-
-
+    
     /**
      * Used to override pizza's current topping's list with updated after removed
      *
