@@ -345,23 +345,12 @@ public class UserInterface {
 
         // Allows user to exit or continue with adding drink to order
 
+
         while (true) {
+            int cupSizeChoice;
             System.out.println("\nEnter a Cup Size (1-3)");
-            IntStream.range(0, cupSize.length).forEach(i -> System.out.println(i + 1 + ". " + cupSize[i]));
-            System.out.println("4. Exit");
-            System.out.print("Choice: ");
-            while (true) {
-                try {
-                    cupChoice = parseInt(scan.nextLine());
-                    if (cupChoice > 0 && cupChoice < 5) break;
-                    else System.out.println(Colors.ERROR + "\nInvalid Input Enter 1-4!" + Colors.RESET + "\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            if (cupChoice == 4) {
-                break;
-            }
+            cupSizeChoice = getMenuChoice(cupSize) - 1;
+            if (cupSizeChoice == cupSize.length) break;
 
             // Loops through drinks list while printing an index
 
@@ -383,12 +372,11 @@ public class UserInterface {
 
             // Creates a drink object
 
-            Item drink = new Drink(drinks[flavorChoice - 1], cupSize[cupChoice - 1]);
+            Item drink = new Drink(drinks[flavorChoice - 1], cupSize[cupSizeChoice]);
             currentOrder.addItem(drink);
             System.out.println(currentOrder.getItem(currentOrder.getItems().size()));
             System.out.println(Colors.SUCCESS + "\nDrink added!" + Colors.RESET + "\n");
         }
-
 
     }
 
@@ -398,36 +386,21 @@ public class UserInterface {
      */
     private void processAddGarlicKnot() {
         String[] garlicKnots = {"Classic", "Parmesan", "Cheesy", "Pizza-style", "Spicy", "Everything Bagel"};
-        System.out.println("\nGarlic Knots");
 
 
-        int choice = -1;
-        while (choice != 7) {
+        int choice;
+        while (true) {
+            System.out.println("\nGarlic Knots");
             System.out.println("Pick a flavor (1-6)");
-            IntStream.range(0, garlicKnots.length).forEach(i -> System.out.println(i + 1 + ". " + garlicKnots[i]));
-            System.out.println("7. Exit");
-            System.out.print("Choice: ");
-            while (true) {
-                try {
-                    choice = parseInt(scan.nextLine());
-                    if (choice > 0 && choice < 8) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-7!" + Colors.RESET + "\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            if (choice == 7) {
-                break;
-            }
-            String flavor = garlicKnots[choice - 1];
-            GarlicKnot garlicKnot = new GarlicKnot(flavor);
-
-            currentOrder.addItem(garlicKnot);
+            choice = getMenuChoice(garlicKnots) - 1;
+            if (choice == garlicKnots.length) break;
+            String garlicKnotType = garlicKnots[choice];
+            Item flavoredKnot = new GarlicKnot(garlicKnotType);
+            currentOrder.addItem(flavoredKnot);
             System.out.println(currentOrder.getItem(currentOrder.getItems().size()));
             System.out.println(Colors.SUCCESS + "Garlic Knot added!" + Colors.RESET + "\n");
-
+            System.out.println("Add More!\n");
         }
-
 
     }
 
@@ -487,13 +460,17 @@ public class UserInterface {
 
     /* --------------------------------------------------------------------------
        Helper Functions
-
-     * Parse int strings
-     * if s is empty throws Exception with Custom message (skipped by user)
-     * Uses try/catch to check if user input valid.
-     * if s is not a number or in a int format throws Exception
-
        -------------------------------------------------------------------------- */
+
+    /**
+     * Loops through options while numbering, extra print for exit
+     * Uses helper parseInt() within a try/catch within a while loop
+     * to repeat until user input valid.
+     * Used by all topping sub-menus
+     *
+     * @param options All options for within menu
+     * @return int associated with the prints
+     */
 
     private int getMenuChoice(String[] options) {
         IntStream.range(0, options.length).forEach(i -> System.out.println(i + 1 + ". " + options[i]));
@@ -510,6 +487,14 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Parse string input
+     * if s is empty throws Exception with Custom message.
+     * Uses try/catch to check if user input valid.
+     * If s is not a number throws Exception
+     *
+     * @return validated int
+     */
     private static int parseInt(String s) {
         if (s.isEmpty()) {
             throw new IllegalArgumentException(Colors.WARN + "Input can't be empty" + Colors.RESET);
