@@ -1,0 +1,17 @@
+========================================
+World's Best Pizzeria
+    Official Receipt
+========================================
+
+Date: 05/28/2026 10:35:15 PM
+
+1. 8" Pizza Base Price: $8.50
+Crust: Regular
+Toppings
+Regular Toppings: Bell Pepper $0.00, Olives $0.00, Onions $0.00, Spinach $0.00
+Sauce: Marinara $0.00
+Total Pizza Price: $8.50
+
+========================================
+Total Price: 8.5
+----------------------------------------

@@ -240,15 +240,13 @@ public class UserInterface {
 
     private void customizePremadePizza(Pizza pizza) {
         System.out.println("\nCustomizing Pizza");
-        String[] options = {"true", "false"};
-        System.out.println("1. Add Toppings");
-        System.out.println("2. Remove Toppings");
+        String[] options = {"Add Toppings", "Remove Toppings"};
         int choice;
         while (true) {
             System.out.println("\nMeat Toppings\n");
             choice = getMenuChoice(options) - 1;
             if (choice == options.length) break;
-            else if (choice == 2) {
+            else if (choice == 1) {
                 while (true) {
                     List<Topping> currentTopping = pizza.getAllToppings();
                     System.out.println("Current Toppings\n");
@@ -259,7 +257,7 @@ public class UserInterface {
                     while (true) {
                         try {
                             removingChoice = parseInt(scan.nextLine());
-                            if (removingChoice > 0 && choice <= currentTopping.size() + 1) break;
+                            if (removingChoice > 0 && removingChoice <= currentTopping.size() + 1) break;
                             System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
                         } catch (IllegalArgumentException e) {
                             System.out.println(e.getMessage());
@@ -271,26 +269,22 @@ public class UserInterface {
                     currentTopping.remove(removingChoice - 1);
                     pizza.setToppings(currentTopping);
                 }
-//            } else if (choice == 1) {
-//                while (true) {
-//                    System.out.println("Current Toppings\n");
-//                    IntStream.range(0, pizza.getSize()).forEach(i -> System.out.println(i + 1 + ". " + pizza.getTopping(i)));
-//                    System.out.println(pizza.getSize() + 1 + ". Exit");
-//                    System.out.print("Choice: ");
-//                    int choice;
-//                    while (true) {
-//                        try {
-//                            choice = parseInt(scan.nextLine());
-//                            if (choice > 0 && choice <= currentTopping.size() + 1) break;
-//                            System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
-//                        } catch (IllegalArgumentException e) {
-//                            System.out.println(e.getMessage());
-//
-//                        }
-//                    }
-//                    if (choice == pizza.getSize() + 1) break;
-//                    currentTopping.remove(choice - 1);
-//                }
+            } else if (choice == 0) {
+                String[] toppings = {"Meat", "Cheese", "Regular toppings", "Sauces", "Side"};
+                int toppingChoice;
+                while (true) {
+                    System.out.println("\nToppings options");
+                    toppingChoice = getMenuChoice(toppings);
+                    if (toppingChoice == toppings.length + 1) break;
+                    switch (toppingChoice) {
+                        case 1 -> processAddMeat(pizza);
+                        case 2 -> processAddCheese(pizza);
+                        case 3 -> processAddRegular(pizza);
+                        case 4 -> processAddSauces(pizza);
+                        case 5 -> processAddSides(pizza);
+                        default -> System.out.println(Colors.ERROR + "\nInvalid Input!" + Colors.RESET + "\n");
+                    }
+                }
             }
         }
 

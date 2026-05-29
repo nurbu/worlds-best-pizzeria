@@ -1,0 +1,17 @@
+========================================
+World's Best Pizzeria
+    Official Receipt
+========================================
+
+Date: 05/28/2026 07:58:45 PM
+
+1. SMALL Ice-Tea $2.0
+
+2. 8" Pizza (StuffedCrust) 
+Base Price: 8.5
+Crust: thin
+Toppings
+Meat Toppings: Pepperoni 1.0, Pepperoni (Extra) 0.5, Sausage 1.0
+Total Pizza Price: 11.0
+
+========================================Total Price: 13.0----------------------------------------

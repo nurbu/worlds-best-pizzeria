@@ -1,0 +1,16 @@
+========================================
+World's Best Pizzeria
+    Official Receipt
+========================================
+
+Date: 05/28/2026 08:45:27 PM
+
+1. SMALL Coca cola $2.00
+
+2. Garlic Knot Classic $1.50
+
+3. 8" Pizza Base Price: $8.50
+Crust: thin
+Total Pizza Price: $8.50
+
+========================================Total Price: 12.0----------------------------------------

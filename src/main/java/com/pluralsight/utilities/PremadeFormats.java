@@ -20,7 +20,7 @@ public class PremadeFormats {
      * Fully formatted header for displaying receipt
      */
     public static final String STORE_HEADER = String.format(
-            "%s%n%30s%n%20s%n%s", DOUBLE_DASHES,
+            "%s%n%20s%n%20s%n%s", DOUBLE_DASHES,
             "World's Best Pizzeria",
             "Official Receipt", DOUBLE_DASHES
     );

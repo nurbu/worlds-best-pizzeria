@@ -1,0 +1,20 @@
+========================================
+         World's Best Pizzeria
+    Official Receipt
+========================================
+
+Date: 05/29/2026 12:12:37 AM
+
+1. SMALL Starry $2.00
+
+2. Garlic Knot Classic $1.50
+
+3. Garlic Knot Parmesan $1.50
+
+4. Garlic Knot Cheesy $1.50
+
+5. Garlic Knot Classic $1.50
+
+========================================
+Total Price: 8.0
+----------------------------------------

@@ -1,0 +1,17 @@
+========================================
+World's Best Pizzeria
+    Official Receipt
+========================================
+
+Date: 05/28/2026 07:59:45 PM
+
+1. 8" Pizza (StuffedCrust) 
+Base Price: 8.5
+Crust: regular
+Toppings
+Regular Toppings: Bell Peppers $0.0, Mushrooms $0.0, Onions $0.0, Onions $0.0
+Cheese Toppings: Mozzarella 0.75, Mozzarella (Extra) 0.3, Parmesan 0.75, Ricotta 0.75
+Sauce: Parmesan $0.0, Red Pepper $0.0, Red Pepper $0.0
+Total Pizza Price: 11.05
+
+========================================Total Price: 11.05----------------------------------------
