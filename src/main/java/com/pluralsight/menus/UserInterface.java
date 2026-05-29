@@ -132,7 +132,23 @@ public class UserInterface {
             }
             if (signatureChoice == pizzas.size() + 1) return;
             Pizza pizza = pizzasIndexedValues.get(signatureChoice - 1);
-            System.out.println("Would you like to customize this pizza? (1-2)");
+            int customizeChoice = -1;
+            while (true) {
+                System.out.println("Would you like to customize the pizza?");
+                System.out.println("1. Yes");
+                System.out.println("2. No");
+                try {
+                    customizeChoice = parseInt(scan.nextLine());
+                    if (customizeChoice == 1 || customizeChoice == 2) break;
+                    System.out.println(Colors.ERROR + "\nInvalid Choice!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (customizeChoice == 1) customizePremadePizza(pizza);
+            currentOrder.addItem(pizza);
+            System.out.println(pizza);
+            System.out.println(Colors.SUCCESS + "\nPizza Added Successfully!" + Colors.RESET);
 
         } else if (choice == 2) {
             System.out.println("\n" + PremadeFormats.DOUBLE_DASHES_COLORFUL);
@@ -237,6 +253,33 @@ public class UserInterface {
         }
 
     }
+
+    private void customizePremadePizza(Pizza pizza) {
+        List<Topping> currentTopping = pizza.getAllToppings();
+
+        while (true) {
+            System.out.println("Current Toppings\n");
+            IntStream.range(0, currentTopping.size()).forEach(i -> System.out.println(i + 1 + ". " + currentTopping.get(i)));
+            System.out.println(currentTopping.size() + 1 + ". Exit");
+            System.out.print("Choice: ");
+            int choice;
+            while (true) {
+                try {
+                    choice = parseInt(scan.nextLine());
+                    if (choice > 0 && choice <= currentTopping.size() + 1) break;
+                    System.out.println(Colors.ERROR + "Invalid Input!" + Colors.RESET + "\n");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+
+                }
+            }
+            if (choice == currentTopping.size() + 1) break;
+            System.out.println(Colors.SUCCESS + currentTopping.get(choice - 1) + "Removed Successfully!" + Colors.RESET);
+            currentTopping.remove(choice);
+        }
+        pizza.setToppings(currentTopping);
+    }
+
 
        /* --------------------------------------------------------------------------
        Topping's Helper Functions

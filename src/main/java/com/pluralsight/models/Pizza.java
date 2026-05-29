@@ -27,6 +27,10 @@ public class Pizza implements Item {
         this.toppings.remove(index);
     }
 
+    public void setToppings(List<Topping> toppings) {
+        this.toppings = toppings;
+    }
+
     public List<Topping> getAllToppings() {
         return this.toppings;
     }
