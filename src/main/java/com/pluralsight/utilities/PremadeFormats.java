@@ -16,15 +16,16 @@ public class PremadeFormats {
     public static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(DATETIME_PATTERN);
 
     public static final String STORE_HEADER = String.format(
-            "%s%n%20s%n%20s%n%s", DOUBLE_DASHES,
+            "%s%n%30s%n%20s%n%s", DOUBLE_DASHES,
             "World's Best Pizzeria",
             "Official Receipt", DOUBLE_DASHES
     );
-    public static final String PIZZA_HOME = String.format(
-            "%s%n%25s%n%s", DOUBLE_DASHES,
-            "Adding Pizza",
-            DOUBLE_DASHES
-    );
+
+    public static String headingFormat(String header) {
+        return String.format("%s%n%25s%n%s", DOUBLE_DASHES,
+                header,
+                DOUBLE_DASHES);
+    }
 //    public static final String PIZZA_HOME = String.format(
 //            "%s%n%25s%n%s", DOUBLE_DASHES,
 //            "Adding Pizza",

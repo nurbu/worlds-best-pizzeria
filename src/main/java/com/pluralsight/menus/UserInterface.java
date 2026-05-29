@@ -16,7 +16,7 @@ import static com.pluralsight.models.SignaturePizza.loadSignaturePizzas;
 
 public class UserInterface {
 
-    private Scanner scan;
+    private final Scanner scan;
     Order currentOrder;
 
     public UserInterface() {
@@ -90,7 +90,7 @@ public class UserInterface {
     }
 
     private void processAddPizza() {
-        System.out.println(PremadeFormats.PIZZA_HOME);
+        System.out.println(PremadeFormats.headingFormat("Add Pizza"));
         int choice;
         while (true) {
             System.out.println("1. Signature Pizzas");
@@ -106,11 +106,11 @@ public class UserInterface {
             }
         }
 
-        if (choice == 3) return;
-        else if (choice == 1) {
+
+        if (choice == 1) {
             Map<String, Pizza> pizzas = loadSignaturePizzas();
             List<Pizza> pizzasIndexedValues = new ArrayList<>(pizzas.values());
-            int signatureChoice = -1;
+            int signatureChoice;
             int i;
             while (true) {
                 i = 1;
@@ -132,7 +132,7 @@ public class UserInterface {
             }
             if (signatureChoice == pizzas.size() + 1) return;
             Pizza pizza = pizzasIndexedValues.get(signatureChoice - 1);
-            int customizeChoice = -1;
+            int customizeChoice;
             while (true) {
                 System.out.println("Would you like to customize the pizza?");
                 System.out.println("1. Yes");
@@ -164,7 +164,7 @@ public class UserInterface {
                 System.out.print("Choice: ");
                 try {
                     sizeNum = parseInt(scan.nextLine());
-                    if (sizeNum > 0 && sizeNum < 4) break;
+                    if (sizeNum > 0 && sizeNum < 5) break;
                     else System.out.println(Colors.ERROR + "\nInvalid size!" + Colors.RESET + "\n");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
@@ -178,7 +178,7 @@ public class UserInterface {
                 case 2 -> size = 12;
                 case 3 -> size = 16;
             }
-            int crustNum = 0;
+            int crustNum;
             while (true) {
                 System.out.println("\nType of Crust? (1-4)");
                 System.out.println("\n1. Thin");
@@ -251,7 +251,6 @@ public class UserInterface {
 
             currentOrder.addItem(pizza);
         }
-
     }
 
     private void customizePremadePizza(Pizza pizza) {
@@ -275,7 +274,7 @@ public class UserInterface {
             }
             if (choice == currentTopping.size() + 1) break;
             System.out.println(Colors.SUCCESS + currentTopping.get(choice - 1) + "Removed Successfully!" + Colors.RESET);
-            currentTopping.remove(choice);
+            currentTopping.remove(choice - 1);
         }
         pizza.setToppings(currentTopping);
     }
@@ -378,10 +377,8 @@ public class UserInterface {
 
         String[] drinks = {"Coca cola", "Starry", "Coke zero", "Fanta", "Dr.Pepper", "Ice-Tea"};
         String[] cupSize = {"Small", "Medium", "Large"};
-        int cupChoice;
-        /**
-         * Main loop repeats asking to add more drinks
-         */
+        // Main loop repeats asking to add more drinks
+
         System.out.println(PremadeFormats.DOUBLE_DASHES_COLORFUL);
         System.out.println(Colors.HEADER + "\nDrink Menu!" + Colors.RESET + "\n");
         System.out.println(PremadeFormats.SINGLE_DASHES_COLORFUL);
@@ -398,7 +395,7 @@ public class UserInterface {
             // Loops through drinks list while printing an index
 
             IntStream.range(0, drinks.length).forEach(i -> System.out.println(i + 1 + ". " + drinks[i]));
-            int flavorChoice = -1;
+            int flavorChoice;
             while (true) {
                 System.out.print("Choice: ");
                 try {
@@ -495,7 +492,7 @@ public class UserInterface {
     }
 
     /**
-     * Reinitializes order to completely restart
+     * Reinitialize order to completely restart
      */
     private void processCancelOrder() {
         currentOrder = new Order();
