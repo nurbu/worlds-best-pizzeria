@@ -63,10 +63,23 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools
-like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
+## Diagram
 
-![Application Screenshot](path/to/your/screenshot.png)
+![Screenshot 2026-05-29 at 3.28.18 AM 2.png](src/main/java/com/pluralsight/imageorgif/Screenshot%202026-05-29%20at%203.28.18%E2%80%AFAM%202.png)
+![Screenshot 2026-05-29 at 2.36.56 AM.png](src/main/java/com/pluralsight/imageorgif/Screenshot%202026-05-29%20at%202.36.56%E2%80%AFAM.png)
+![Screenshot 2026-05-29 at 2.37.14 AM.png](src/main/java/com/pluralsight/imageorgif/Screenshot%202026-05-29%20at%202.37.14%E2%80%AFAM.png)
+
+## Program Start
+
+![Screenshot 2026-05-29 at 3.08.46 AM.png](src/main/java/com/pluralsight/imageorgif/Screenshot%202026-05-29%20at%203.08.46%E2%80%AFAM.png)
+
+## Gif
+
+![ezgif.com-speed.gif](src/main/java/com/pluralsight/imageorgif/ezgif.com-speed.gif)
+
+## Final Receipt
+
+![Screenshot 2026-05-29 at 3.36.41 AM.png](src/main/java/com/pluralsight/imageorgif/Screenshot%202026-05-29%20at%203.36.41%E2%80%AFAM.png)
 
 ## Future Work
 
