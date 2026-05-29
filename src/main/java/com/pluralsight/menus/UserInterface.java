@@ -193,6 +193,9 @@ public class UserInterface {
                 case 2 -> size = 12;
                 case 3 -> size = 16;
             }
+            /**
+             * Gets crustType and boolean stuffedCrust
+             */
             int crustNum;
             while (true) {
                 System.out.println(PremadeFormats.headingFormat("Type of Crust? (1-4)"));
@@ -259,6 +262,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Handles if adding or removing toppings from premade pizzas
+     *
+     * @param pizza Updates the topping's list
+     */
     private void customizePremadePizza(Pizza pizza) {
         System.out.println(PremadeFormats.headingFormat("Customizing Pizza"));
         String[] options = {"Add Toppings", "Remove Toppings"};
@@ -266,8 +274,10 @@ public class UserInterface {
         while (true) {
             choice = getMenuChoice(options) - 1;
             if (choice == options.length) break;
+                // For removing toppings
             else if (choice == 1) {
                 while (true) {
+                    // Saves a copy of pizza's list
                     List<Topping> currentTopping = pizza.getAllToppings();
                     System.out.println(PremadeFormats.headingFormat("Current Toppings"));
                     IntStream.range(0, currentTopping.size()).forEach(i -> System.out.println(i + 1 + ". " + Colors.TEXT + currentTopping.get(i)));
@@ -285,11 +295,15 @@ public class UserInterface {
                         }
                     }
                     if (removingChoice == currentTopping.size() + 1) break;
-                    System.out.println(Colors.SUCCESS + currentTopping.get(removingChoice - 1) + "Removed Successfully!" + Colors.RESET);
+                    // User choice -1 to match index of topping's displayed
+                    System.out.println(Colors.SUCCESS + currentTopping.get(removingChoice - 1) + " Removed Successfully!" + Colors.RESET);
                     currentTopping.remove(removingChoice - 1);
                     pizza.setToppings(currentTopping);
                 }
-            } else if (choice == 0) {
+            }
+            // Adds Topping
+            else if (choice == 0) {
+                // Reuses previous logic for going to different methods to add to pizza's topping lsit
                 String[] toppings = {"Meat", "Cheese", "Regular toppings", "Sauces", "Side"};
                 int toppingChoice;
                 while (true) {
