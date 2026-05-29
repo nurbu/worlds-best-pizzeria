@@ -252,6 +252,7 @@ public class UserInterface {
        -------------------------------------------------------------------------- */
 
     private void processAddMeat(Pizza pizza) {
+
         String[] meats = {"Pepperoni", "Sausage", "Ham", "Bacon", "Chicken", "Meatball"};
         int choice;
         while (true) {
@@ -267,8 +268,8 @@ public class UserInterface {
 
 
     private void processAddCheese(Pizza pizza) {
-        String[] cheeses = {"Mozzarella", "Parmesan", "Ricotta", "Goat Cheese", "Buffalo"};
 
+        String[] cheeses = {"Mozzarella", "Parmesan", "Ricotta", "Goat Cheese", "Buffalo"};
         int choice;
         while (true) {
             System.out.println("\nCheese Toppings\n");
@@ -282,80 +283,47 @@ public class UserInterface {
     }
 
     private void processAddRegular(Pizza pizza) {
+
         String[] regularToppings = {"Onions", "Mushrooms", "Bell Peppers", "Olives", "Tomatoes", "Spinach", "Basil", "Pineapple", "Anchovies"};
-        System.out.println("Regular Toppings");
-        int choice = -1;
-        while (choice != 10) {
-            IntStream.range(0, regularToppings.length).forEach(i -> System.out.println(i + 1 + ". " + regularToppings[i]));
-            System.out.println("10. Exit");
-            System.out.print("Choice: ");
-            while (true) {
-                try {
-                    choice = parseInt(scan.nextLine());
-                    if (choice > 0 && choice < 11) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-10!" + Colors.RESET + "\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            if (choice == 10) {
-                break;
-            }
-            String regularType = regularToppings[choice - 1];
+
+        int choice;
+        while (true) {
+            System.out.println("Regular Toppings");
+            choice = getMenuChoice(regularToppings) - 1;
+            if (choice == regularToppings.length) break;
+            String regularType = regularToppings[choice];
             Topping topping = new RegularTopping(regularType);
             pizza.addTopping(topping);
+            System.out.println("Add More!\n");
         }
     }
 
     private void processAddSauces(Pizza pizza) {
         String[] sauces = {"Marinara", "Alfredo", "Pesto", "BBQ", "Buffalo", "Olive oil"};
-        System.out.println("\nSauces\n");
-        int choice = -1;
-        while (choice != 7) {
-            IntStream.range(0, sauces.length).forEach(i -> System.out.println(i + 1 + ". " + sauces[i]));
-            System.out.println("7. Exit");
-            System.out.print("Choice: ");
-            while (true) {
-                try {
-                    choice = parseInt(scan.nextLine());
-                    if (choice > 0 && choice < 8) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-7!" + Colors.RESET + "\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            if (choice == 7) {
-                break;
-            }
-            String sauce = sauces[choice - 1];
-            Topping topping = new Sauce(sauce);
-            pizza.addTopping(topping);
+
+        int choice;
+        while (true) {
+            System.out.println("\nSauces\n");
+            choice = getMenuChoice(sauces) - 1;
+            if (choice == sauces.length) break;
+            String sauceType = sauces[choice];
+            Topping sauce = new Sauce(sauceType);
+            pizza.addTopping(sauce);
+            System.out.println("Add More!\n");
         }
     }
 
     private void processAddSides(Pizza pizza) {
         String[] sides = {"Red Pepper", "Parmesan"};
-        System.out.println("\nMeat Toppings\n");
-        int choice = -1;
-        while (choice != 3) {
-            IntStream.range(0, sides.length).forEach(i -> System.out.println(i + 1 + ". " + sides[i]));
-            System.out.println("3. Exit");
-            System.out.print("Choice: ");
-            while (true) {
-                try {
-                    choice = parseInt(scan.nextLine());
-                    if (choice > 0 && choice < 4) break;
-                    else System.out.println(Colors.ERROR + "Invalid Input Enter 1-3!" + Colors.RESET + "\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            if (choice == 3) {
-                break;
-            }
-            String side = sides[choice - 1];
-            Topping topping = new Side(side);
-            pizza.addTopping(topping);
+        int choice;
+        while (true) {
+            System.out.println("\nSides\n");
+            choice = getMenuChoice(sides) - 1;
+            if (choice == sides.length) break;
+            String sideType = sides[choice];
+            Topping side = new Sauce(sideType);
+            pizza.addTopping(side);
+            System.out.println("Add More!\n");
         }
     }
 
