@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/**
+ * All orders have a list of items and unique a orderId
+ */
 public class Order {
     private final List<Item> items;
     private final int orderId;
@@ -17,6 +20,13 @@ public class Order {
         items.add(item);
     }
 
+    /**
+     * Use index given to find item
+     * index - 1 done as index is user input and
+     * listing of items starts at 1.
+     *
+     * @param index
+     */
     public void removeItem(int index) {
         items.remove(index - 1);
     }
@@ -29,10 +39,6 @@ public class Order {
         return items;
     }
 
-    public void clearOrder() {
-        items.clear();
-    }
-
     public void displayOrder() {
         if (items.isEmpty()) {
             System.out.println("order is empty");
@@ -41,14 +47,15 @@ public class Order {
         IntStream.range(0, items.size()).forEach(i -> System.out.println(i + 1 + ". " + items.get(i)));
     }
 
-    public double getTotalPrice() {
-        return items.stream().mapToDouble(Item::getPrice).sum();
-    }
-
     public int getOrderId() {
         return orderId;
     }
 
+    /**
+     * Sets the orderId between 100k - 200k
+     *
+     * @return
+     */
     private int setOrderId() {
         int min = 100000, max = 200000;
         return (int) (Math.random() * (max - min + 1)) + min;

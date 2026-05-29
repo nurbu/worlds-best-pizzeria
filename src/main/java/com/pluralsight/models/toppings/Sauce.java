@@ -1,5 +1,9 @@
 package com.pluralsight.models.toppings;
 
+/**
+ * Is free at all times
+ * Uses inherited toString
+ */
 public class Sauce extends Topping {
 
     public Sauce(String name) {

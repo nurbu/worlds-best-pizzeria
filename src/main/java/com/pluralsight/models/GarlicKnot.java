@@ -1,5 +1,9 @@
 package com.pluralsight.models;
 
+/**
+ * Flavor required
+ * Price constant for each flavor
+ */
 public class GarlicKnot implements Item {
 
     private String flavor;

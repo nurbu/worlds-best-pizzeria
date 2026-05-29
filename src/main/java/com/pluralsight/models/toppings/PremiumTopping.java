@@ -2,7 +2,7 @@ package com.pluralsight.models.toppings;
 
 /**
  * Handles all Premium Toppings subclasses
- * getPrice gets Overridden for each child's unique prices.
+ * getPrice gets Overridden for each child's unique prices (Meat and Cheese).
  * toString gets reused in all children classes.
  */
 public abstract class PremiumTopping extends Topping {

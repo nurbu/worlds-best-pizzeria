@@ -1,5 +1,9 @@
 package com.pluralsight.models.toppings;
 
+/**
+ * Is free at all times
+ * Uses inherited toString
+ */
 public class Side extends Topping {
 
     public Side(String name) {

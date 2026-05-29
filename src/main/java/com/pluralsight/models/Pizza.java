@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Pizza model used to store details of a pizza custom or premade.
+ */
 public class Pizza implements Item {
     private int size;
     private String crustType;
@@ -23,10 +26,11 @@ public class Pizza implements Item {
         this.toppings.add(topping);
     }
 
-    public void removeTopping(int index) {
-        this.toppings.remove(index);
-    }
-
+    /**
+     * Used to override pizza's current topping's list with updated after removed
+     *
+     * @param toppings
+     */
     public void setToppings(List<Topping> toppings) {
         this.toppings = toppings;
     }
@@ -39,6 +43,12 @@ public class Pizza implements Item {
         return this.size;
     }
 
+    /**
+     * Based off size, base price of pizza changes
+     * Combines all the toppings price with base price.
+     *
+     * @return Total of pizza
+     */
     @Override
     public double getPrice() {
         double totalPrice = 0;
@@ -53,6 +63,16 @@ public class Pizza implements Item {
         return totalPrice;
     }
 
+    /**
+     * Loop through toppings and sort into their own list.
+     * Sort each of the lists created by name (Helps put same toppings next to each other for extras).
+     * Use StringBuilder to structure everything properly (Use String.format() for double proper format).
+     * Checks each if empty or not before adding appending to sb.
+     * Also, makes sure to not put "," if last topping.
+     * Lastly, appends the total price of pizza at end.
+     *
+     * @return Formatted toString for ClI or receipt
+     */
     @Override
     public String toString() {
         List<RegularTopping> regularToppings = new ArrayList<>();

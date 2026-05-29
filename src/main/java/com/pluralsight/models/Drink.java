@@ -1,5 +1,8 @@
 package com.pluralsight.models;
 
+/**
+ * Every Drink needs a cup and drink flavor
+ */
 public class Drink implements Item {
     private String flavor;
     private String size;
@@ -8,6 +11,7 @@ public class Drink implements Item {
     public Drink(String flavor, String size) {
         this.flavor = flavor;
         this.size = size.toUpperCase();
+        // Auto calls method when Drink created to initialize price
         setPrice();
     }
 
@@ -19,6 +23,9 @@ public class Drink implements Item {
         return size;
     }
 
+    /**
+     * Custom price set based off the cup's size only
+     */
     private void setPrice() {
         switch (this.size) {
             case "SMALL" -> price = 2.00;

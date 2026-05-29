@@ -33,6 +33,7 @@ public class SignaturePizza {
         Veggie.addTopping(new Sauce("Marinara"));
         Veggie.addTopping(new Cheese("Mozzarella", false, 8));
 
+        // Adds custom pizzas to signaturePizzas
         signaturePizzas.put("Margherita", Margherita);
         signaturePizzas.put("Veggie", Veggie);
 

@@ -1,5 +1,8 @@
 package com.pluralsight.models.toppings;
 
+/**
+ * Every topping requires a name and handles their own pricing.
+ */
 public abstract class Topping {
     private String name;
 
